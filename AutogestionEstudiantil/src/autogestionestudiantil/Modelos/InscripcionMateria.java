@@ -100,7 +100,50 @@ public class InscripcionMateria implements Evaluable {
         return getPromedio() >= 6 && getCondicion().equals("Regular");
     }
     
+    // DAO
+    public String toTexto() {
 
+        String notasTexto = "";
+
+        for (int i = 0; i < notas.size(); i++) {
+            notasTexto += notas.get(i);
+
+            if (i < notas.size() - 1) {
+                notasTexto += ",";
+            }
+        }
+
+        return materia.getCodigo() + ";"
+                + totalClases + ";"
+                + clasesAsistidas + ";"
+                + notasTexto;
+    }
+    
+    public static InscripcionMateria fromTexto(String linea, Materia materia) {
+
+        String[] datos = linea.split(";");
+
+        InscripcionMateria inscripcion
+                = new InscripcionMateria(materia);
+
+        inscripcion.totalClases
+                = Integer.parseInt(datos[1]);
+
+        inscripcion.clasesAsistidas
+                = Integer.parseInt(datos[2]);
+
+        if (datos.length > 3 && !datos[3].isEmpty()) {
+
+            String[] notasTexto = datos[3].split(",");
+
+            for (String nota : notasTexto) {
+                inscripcion.notas.add(
+                        Double.parseDouble(nota));
+            }
+        }
+
+        return inscripcion;
+    }
     
 }
  
