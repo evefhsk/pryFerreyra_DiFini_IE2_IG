@@ -2,16 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package autogestionestudiantil;
+package autogestionestudiantil.Modelos;
 
 /**
  *
  * @author eve
  */
+import autogestionestudiantil.Modelos.Materia;
+
 import java.util.ArrayList;
 
 
-public class InscripcionMateria implements Evaluable, Rankeable {
+public class InscripcionMateria implements Evaluable {
 
    
     private Materia materia;
@@ -43,29 +45,6 @@ public class InscripcionMateria implements Evaluable, Rankeable {
         return notas;
     }
 
-
-    
-    //BONUS
-    //Para el cálculo de Puntaje ranking
-    @Override
-    public double getPuntajeRanking() {
-
-        double promedio = 0;
-
-        for (double n : notas) {
-            promedio += n;
-        }
-
-        promedio = (notas.size() > 0) ? promedio / notas.size() : 0;
-
-        double asistencia = (totalClases > 0)
-                ? (clasesAsistidas * 100.0 / totalClases) : 0;
-
-        asistencia = asistencia / 10;
-
-        return (promedio * 0.6) + (asistencia * 0.4);
-    }
-    
     public void registrarAsistencia(boolean presente) {
         totalClases++;
 
@@ -85,7 +64,7 @@ public class InscripcionMateria implements Evaluable, Rankeable {
     public String getCondicion() {
         return getPorcentajeAsistencia() >= 75 ? "Regular" : "Libre";
 
-    }
+    } 
     
     public boolean agregarNota(double nota) {
         if (nota < 0 || nota > 10) {

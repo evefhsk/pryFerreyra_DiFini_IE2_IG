@@ -2,14 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package autogestionestudiantil;
+package autogestionestudiantil.Modelos;
 
-/**
- *
- * @author Terminal
- */
-public interface Rankeable 
+public interface Consultable 
 {
-    //Indica que la clase heredada tiene que hacer su método
-    double getPuntajeRanking(); 
+     void mostrarResumen(); 
 }

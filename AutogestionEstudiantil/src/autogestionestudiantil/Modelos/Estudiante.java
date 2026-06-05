@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package autogestionestudiantil;
+package autogestionestudiantil.Modelos;
 
 /**
  *
@@ -10,6 +10,8 @@ package autogestionestudiantil;
  */
 
 
+import autogestionestudiantil.Modelos.PersonaAcademica;
+import autogestionestudiantil.Modelos.Materia;
 import java.util.ArrayList;
 
 public class Estudiante extends PersonaAcademica implements Consultable{
@@ -17,14 +19,14 @@ public class Estudiante extends PersonaAcademica implements Consultable{
     private String carrera;
     private int anioIngreso;
     private ArrayList<InscripcionMateria> materias;
-    private ArrayList<Materia> materiasPolimorfismo; //Nueva lista para el Bonus
+
     
     public Estudiante(String nombre, String legajo, String carrera, int anioIngreso) {
         super(nombre, legajo);
         this.carrera = carrera;
         this.anioIngreso = anioIngreso;
         this.materias = new ArrayList<>();
-        this.materiasPolimorfismo = new ArrayList<>(); //Del Bonus
+
     }
 
 
@@ -78,36 +80,6 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         return null;
     }
     
-
-    //PARTE DEL BONUS:
-    
-    //Agrega materia a la lista
-    public void agregarMateria(Materia m) 
-    {
-        materiasPolimorfismo.add(m);
-        System.out.println("Materia agregada: " + m.getNombre()); 
-    }
-    
-    //Para buscar por codigo
-    public Materia buscarPorCodigo(String codigo) 
-    {
-        return buscarRecursivo(codigo, 0);
-    }
-    
-    private Materia buscarRecursivo(String codigo, int i) 
-    {
-        if (i >= materiasPolimorfismo.size()) {
-            return null;
-        }
-
-        if (materiasPolimorfismo.get(i).getCodigo().equalsIgnoreCase(codigo)) {
-            return materiasPolimorfismo.get(i);
-        }
-
-        return buscarRecursivo(codigo, i + 1);
-        
-    }
-
     public double getPromedioGeneral() {
 
         if (materias.isEmpty()) {
