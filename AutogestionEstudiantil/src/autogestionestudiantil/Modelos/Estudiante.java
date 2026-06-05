@@ -9,8 +9,6 @@ package autogestionestudiantil.Modelos;
  * @author Eve
  */
 
-
-import autogestionestudiantil.Modelos.PersonaAcademica;
 import autogestionestudiantil.Modelos.Materia;
 import java.util.ArrayList;
 
@@ -122,7 +120,26 @@ public class Estudiante extends PersonaAcademica implements Consultable{
         
     }
 
-   
+    // DAO
+    public String toTexto() {
+
+        return getNombre() + ";"
+                + getLegajo() + ";"
+                + carrera + ";"
+                + anioIngreso;
+    }
+
+    public static Estudiante fromTexto(String linea) {
+
+        String[] datos = linea.split(";");
+
+        return new Estudiante(
+                datos[0],
+                datos[1],
+                datos[2],
+                Integer.parseInt(datos[3])
+        );
+    }
 }
   
 
