@@ -17,7 +17,7 @@ public class Materia implements Consultable {
 
     public Materia(String nombre, String codigo, int cuatrimestre, int anio) {
         setNombre(nombre);
-        setCodigo(codigo);
+        setCodigo(codigo); 
         setCuatrimestre(cuatrimestre);
         setAnio(anio);
     }
@@ -116,5 +116,22 @@ public class Materia implements Consultable {
         {
             this.anio = -1;
         }
+    }
+    
+    // DAO
+    public String toTexto() {
+        return nombre + ";" + codigo + ";" + cuatrimestre + ";" + anio;
+    }
+
+    public static Materia fromTexto(String linea) {
+
+        String[] datos = linea.split(";");
+
+        return new Materia(
+                datos[0],
+                datos[1],
+                Integer.parseInt(datos[2]),
+                Integer.parseInt(datos[3])
+        );
     }
 } 
