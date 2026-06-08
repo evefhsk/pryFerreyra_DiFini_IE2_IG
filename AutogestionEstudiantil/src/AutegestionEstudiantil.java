@@ -78,11 +78,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         btnReportes = new javax.swing.JButton();
         lblIconoReportes = new javax.swing.JLabel();
         PanelContenedor = new javax.swing.JPanel();
-        Menu = new javax.swing.JMenuBar();
-        mInicio = new javax.swing.JMenu();
-        mArchivo = new javax.swing.JMenu();
-        mReportes = new javax.swing.JMenu();
-        mAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Main"); // NOI18N
@@ -95,7 +90,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelPerfil.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnPerfil.setBackground(new java.awt.Color(255, 255, 255));
         btnPerfil.setForeground(new java.awt.Color(255, 255, 255));
         btnPerfil.setText("Perfil");
         btnPerfil.setBorderPainted(false);
@@ -127,7 +121,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelInicio.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnInicio.setBackground(new java.awt.Color(255, 255, 255));
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
         btnInicio.setText("Inicio");
         btnInicio.setBorderPainted(false);
@@ -158,7 +151,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelMaterias.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnMaterias.setBackground(new java.awt.Color(255, 255, 255));
         btnMaterias.setForeground(new java.awt.Color(255, 255, 255));
         btnMaterias.setText("Materias");
         btnMaterias.setBorderPainted(false);
@@ -189,7 +181,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelReportes.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnReportes.setBackground(new java.awt.Color(255, 255, 255));
         btnReportes.setForeground(new java.awt.Color(255, 255, 255));
         btnReportes.setText("Reportes");
         btnReportes.setBorderPainted(false);
@@ -239,7 +230,7 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jPanelMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelNavegacion, java.awt.BorderLayout.LINE_START);
@@ -248,20 +239,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         PanelContenedor.setPreferredSize(new java.awt.Dimension(850, 600));
         PanelContenedor.setLayout(new java.awt.CardLayout());
         getContentPane().add(PanelContenedor, java.awt.BorderLayout.CENTER);
-
-        mInicio.setText("Inicio");
-        Menu.add(mInicio);
-
-        mArchivo.setText("Archivo");
-        Menu.add(mArchivo);
-
-        mReportes.setText("Reportes");
-        Menu.add(mReportes);
-
-        mAyuda.setText("Ayuda");
-        Menu.add(mAyuda);
-
-        setJMenuBar(Menu);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -369,7 +346,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar Menu;
     private javax.swing.JPanel PanelContenedor;
     private javax.swing.JPanel PanelNavegacion;
     private javax.swing.JButton btnInicio;
@@ -384,9 +360,5 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoMaterias;
     private javax.swing.JLabel lblIconoPerfil;
     private javax.swing.JLabel lblIconoReportes;
-    private javax.swing.JMenu mArchivo;
-    private javax.swing.JMenu mAyuda;
-    private javax.swing.JMenu mInicio;
-    private javax.swing.JMenu mReportes;
     // End of variables declaration//GEN-END:variables
 }
