@@ -3,17 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+
 /**
  *
  * @author eve
  */
+
 public class PanelMaterias extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelMaterias
      */
-    public PanelMaterias() {
+    private javax.swing.JPanel contenedorPrincipal;
+    private java.awt.CardLayout controlRemoto;
+    
+    public PanelMaterias(javax.swing.JPanel panelPasado, java.awt.CardLayout layoutPasado) {
         initComponents();
+        this.contenedorPrincipal = panelPasado;
+        this.controlRemoto = layoutPasado;
     }
 
     /**
@@ -25,19 +32,137 @@ public class PanelMaterias extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnInscribirse = new javax.swing.JButton();
+        btnDarDeBaja = new javax.swing.JButton();
+        btnListarMaterias = new javax.swing.JButton();
+        btnRegistrarNota = new javax.swing.JButton();
+        btnRegistrarAsistencia = new javax.swing.JButton();
+        btnBuscarMateria = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(703, 600));
+
+        btnInscribirse.setBackground(new java.awt.Color(10, 20, 80));
+        btnInscribirse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnInscribirse.setForeground(new java.awt.Color(255, 255, 255));
+        btnInscribirse.setText("Inscribirse a una materia");
+        btnInscribirse.setActionCommand("Inscribirse a \nuna materia");
+        btnInscribirse.addActionListener(this::btnInscribirseActionPerformed);
+
+        btnDarDeBaja.setBackground(new java.awt.Color(10, 20, 80));
+        btnDarDeBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDarDeBaja.setForeground(new java.awt.Color(255, 255, 255));
+        btnDarDeBaja.setText("Dar de baja a una materia");
+        btnDarDeBaja.setActionCommand("Inscribirse a \nuna materia");
+        btnDarDeBaja.addActionListener(this::btnDarDeBajaActionPerformed);
+
+        btnListarMaterias.setBackground(new java.awt.Color(10, 20, 80));
+        btnListarMaterias.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnListarMaterias.setForeground(new java.awt.Color(255, 255, 255));
+        btnListarMaterias.setText("Listar materias");
+        btnListarMaterias.setActionCommand("Inscribirse a \nuna materia");
+        btnListarMaterias.addActionListener(this::btnListarMateriasActionPerformed);
+
+        btnRegistrarNota.setBackground(new java.awt.Color(10, 20, 80));
+        btnRegistrarNota.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegistrarNota.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarNota.setText("Registrar nota");
+        btnRegistrarNota.setActionCommand("Inscribirse a \nuna materia");
+        btnRegistrarNota.addActionListener(this::btnRegistrarNotaActionPerformed);
+
+        btnRegistrarAsistencia.setBackground(new java.awt.Color(10, 20, 80));
+        btnRegistrarAsistencia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegistrarAsistencia.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarAsistencia.setText("Registrar asistencia");
+        btnRegistrarAsistencia.setActionCommand("Inscribirse a \nuna materia");
+        btnRegistrarAsistencia.addActionListener(this::btnRegistrarAsistenciaActionPerformed);
+
+        btnBuscarMateria.setBackground(new java.awt.Color(10, 20, 80));
+        btnBuscarMateria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarMateria.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarMateria.setText("Buscar materias");
+        btnBuscarMateria.setActionCommand("Inscribirse a \nuna materia");
+        btnBuscarMateria.addActionListener(this::btnBuscarMateriaActionPerformed);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setText("GESTIÓN DE MATERIAS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnInscribirse)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDarDeBaja)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegistrarNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDarDeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInscribirse, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInscribirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirseActionPerformed
+        controlRemoto.show(contenedorPrincipal, "Pantalla_Inscribirse"); 
+    }//GEN-LAST:event_btnInscribirseActionPerformed
+
+    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnDarDeBajaActionPerformed
+
+    private void btnListarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarMateriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarMateriasActionPerformed
+
+    private void btnRegistrarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarNotaActionPerformed
+
+    private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarAsistenciaActionPerformed
+
+    private void btnBuscarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarMateriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarMateria;
+    private javax.swing.JButton btnDarDeBaja;
+    private javax.swing.JButton btnInscribirse;
+    private javax.swing.JButton btnListarMaterias;
+    private javax.swing.JButton btnRegistrarAsistencia;
+    private javax.swing.JButton btnRegistrarNota;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

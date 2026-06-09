@@ -15,12 +15,12 @@ import java.net.URL;
 public class AutegestionEstudiantil extends javax.swing.JFrame {
     
     //Llamar los paneles a la pantalla principal
-    
-    PanelInicio pantallaInicio = new PanelInicio();
-    PanelPerfil pantallaPerfil = new PanelPerfil();
-    PanelMaterias pantallaMaterias = new PanelMaterias();
-    PanelReportes pantallaReportes = new PanelReportes();
-    
+    java.awt.CardLayout layout;
+    PanelInicio pantallaInicio;
+    PanelPerfil pantallaPerfil;
+    PanelMaterias pantallaMaterias;
+    PanelReportes pantallaReportes;
+    PanelInscribirse pantallaInscribirse; 
     
     
    
@@ -30,6 +30,7 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     /**
      * Creates new form AutegestionEstudiantil
      */
+    
     public AutegestionEstudiantil() {
         
         //Promt: Como colocar imagenes en java swing
@@ -44,15 +45,19 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         aplicarEfectoHover(jPanelMaterias, btnMaterias); // Materias
         aplicarEfectoHover(jPanelReportes, btnReportes); // Reportes
         
+        pantallaMaterias = new PanelMaterias(PanelContenedor, layout);
+        pantallaInscribirse = new PanelInscribirse(PanelContenedor, layout); 
+        
         PanelContenedor.add(pantallaInicio, "Pantalla_Inicio");
         PanelContenedor.add(pantallaPerfil, "Pantalla_Perfil");
         PanelContenedor.add(pantallaMaterias, "Pantalla_Materias");
         PanelContenedor.add(pantallaReportes, "Pantalla_Reportes");
+        PanelContenedor.add(pantallaInscribirse, "Pantalla_Inscribirse");
         
         java.awt.CardLayout layout = (java.awt.CardLayout) PanelContenedor.getLayout();
         layout.show(PanelContenedor, "Pantalla_Inicio");
        
-        
+       
     }
 
     /**
@@ -95,7 +100,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelPerfil.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnPerfil.setBackground(new java.awt.Color(255, 255, 255));
         btnPerfil.setForeground(new java.awt.Color(255, 255, 255));
         btnPerfil.setText("Perfil");
         btnPerfil.setBorderPainted(false);
@@ -127,7 +131,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelInicio.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnInicio.setBackground(new java.awt.Color(255, 255, 255));
         btnInicio.setForeground(new java.awt.Color(255, 255, 255));
         btnInicio.setText("Inicio");
         btnInicio.setBorderPainted(false);
@@ -158,7 +161,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelMaterias.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnMaterias.setBackground(new java.awt.Color(255, 255, 255));
         btnMaterias.setForeground(new java.awt.Color(255, 255, 255));
         btnMaterias.setText("Materias");
         btnMaterias.setBorderPainted(false);
@@ -189,7 +191,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         jPanelReportes.setBackground(new java.awt.Color(10, 20, 80));
 
-        btnReportes.setBackground(new java.awt.Color(255, 255, 255));
         btnReportes.setForeground(new java.awt.Color(255, 255, 255));
         btnReportes.setText("Reportes");
         btnReportes.setBorderPainted(false);
