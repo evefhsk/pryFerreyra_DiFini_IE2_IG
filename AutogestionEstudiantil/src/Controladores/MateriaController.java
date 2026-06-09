@@ -14,7 +14,42 @@ public class MateriaController {
         materias = dao.cargarMaterias();
     }
 
-    // Buscar materia por código
+    // INSCRIBIR MATERIA
+    public boolean agregarMateria(String nombre,
+            String codigo,
+            int cuatrimestre,
+            int anio) {
+
+        // Código único
+        if (buscarPorCodigo(codigo) != null) {
+            return false;
+        }
+
+        // Código entre 3 y 10 caracteres
+        if (codigo.length() < 3 || codigo.length() > 10) {
+            return false;
+        }
+
+        // Cuatrimestre válido
+        if (cuatrimestre != 1 && cuatrimestre != 2) {
+            return false;
+        }
+
+        Materia nueva = new Materia(
+                nombre,
+                codigo,
+                cuatrimestre,
+                anio
+        );
+
+        materias.add(nueva);
+
+        dao.guardarMaterias(materias);
+
+        return true;
+    }
+
+    // BUSCAR POR CÓDIGO
     public Materia buscarPorCodigo(String codigo) {
 
         for (Materia materia : materias) {
@@ -29,7 +64,7 @@ public class MateriaController {
         return null;
     }
 
-    // Buscar materias por nombre
+    // BUSCAR POR NOMBRE
     public ArrayList<Materia> buscarPorNombre(String nombre) {
 
         ArrayList<Materia> resultado = new ArrayList<>();
@@ -37,7 +72,8 @@ public class MateriaController {
         for (Materia materia : materias) {
 
             if (materia.getNombre() != null
-                    && materia.getNombre().toLowerCase()
+                    && materia.getNombre()
+                            .toLowerCase()
                             .contains(nombre.toLowerCase())) {
 
                 resultado.add(materia);
@@ -47,7 +83,7 @@ public class MateriaController {
         return resultado;
     }
 
-    // Dar de baja una materia
+    // DAR DE BAJA
     public boolean darDeBajaMateria(String codigo) {
 
         Materia materia = buscarPorCodigo(codigo);
@@ -64,10 +100,10 @@ public class MateriaController {
         return false;
     }
 
-    // Obtener todas las materias
+    // LISTAR
     public ArrayList<Materia> listarMaterias() {
 
         return new ArrayList<>(materias);
     }
-
 }
+ 
