@@ -7,17 +7,20 @@
  *
  * @author Terminal
  */
-public class PanelInscribirse extends javax.swing.JPanel {
+public class PanelInscribirsee extends javax.swing.JPanel {
+    
+    private javax.swing.JPanel contenedorPrincipal;
+    private java.awt.CardLayout controlRemoto;
 
     /**
      * Creates new form PanelInscribirse
      */
-    private javax.swing.JPanel contenedorPrincipal;
-    private java.awt.CardLayout controlRemoto;
-    public PanelInscribirse(javax.swing.JPanel panelPasado, java.awt.CardLayout layoutPasado) {
+    
+    
+    public PanelInscribirsee(javax.swing.JPanel panelPasado, java.awt.CardLayout layoutPasado) {
         initComponents();
         this.contenedorPrincipal = panelPasado;
-        this.controlRemoto = layoutPasado; 
+        this.controlRemoto = layoutPasado;
     }
 
     /**
@@ -170,7 +173,7 @@ public class PanelInscribirse extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

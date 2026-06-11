@@ -7,12 +7,12 @@
  *
  * @author eve
  */
-public class PanelInicio extends javax.swing.JPanel {
+public class PanelInicioo extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelInicio
      */
-    public PanelInicio() {
+    public PanelInicioo() {
         initComponents();
     }
 
@@ -40,7 +40,6 @@ public class PanelInicio extends javax.swing.JPanel {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Inicio");
 
         PanelInicio.setBackground(new java.awt.Color(204, 204, 204));
@@ -104,10 +103,8 @@ public class PanelInicio extends javax.swing.JPanel {
         );
 
         lnlTutulo.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
-        lnlTutulo.setForeground(new java.awt.Color(0, 0, 0));
         lnlTutulo.setText("Bienvenido/a al sistema de Autogestión Estudiantil");
 
-        lblSubTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblSubTitulo.setText("Panel general (Ingresa tus datos para ver tu progreso)");
 
         javax.swing.GroupLayout PanelInicio1Layout = new javax.swing.GroupLayout(PanelInicio1);

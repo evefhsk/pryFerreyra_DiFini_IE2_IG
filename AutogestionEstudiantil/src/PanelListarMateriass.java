@@ -7,12 +7,12 @@
  *
  * @author Terminal
  */
-public class PanelListarMaterias extends javax.swing.JPanel {
+public class PanelListarMateriass extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelListarMaterias
      */
-    public PanelListarMaterias() {
+    public PanelListarMateriass() {
         initComponents();
     }
 
