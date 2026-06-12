@@ -74,56 +74,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         btnReportes = new javax.swing.JButton();
         lblIconoReportes = new javax.swing.JLabel();
         PanelContenedor = new javax.swing.JPanel();
-        PantallaInscribirse = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtCodigo = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtCuatrimestre = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtAño = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        btnInscribirme = new java.awt.Button();
-        jLabel10 = new javax.swing.JLabel();
-        btnCancelar = new java.awt.Button();
-        jLabel11 = new javax.swing.JLabel();
-        PantallaReportes = new javax.swing.JPanel();
-        PantallaMaterias = new javax.swing.JPanel();
-        btnInscribirse = new javax.swing.JButton();
-        btnDarDeBaja = new javax.swing.JButton();
-        btnListarMaterias = new javax.swing.JButton();
-        btnRegistrarNota = new javax.swing.JButton();
-        btnRegistrarAsistencia = new javax.swing.JButton();
-        btnBuscarMateria = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        PantallaInicio = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        PanelInicio = new javax.swing.JPanel();
-        PanelInicio1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        lnlTutulo = new javax.swing.JLabel();
-        lblSubTitulo = new javax.swing.JLabel();
-        PantallaPerfil = new javax.swing.JPanel();
-        PantallaDarDeBaja = new javax.swing.JPanel();
-        btnCancelar1 = new java.awt.Button();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        txtMateria = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        btnDarDeBaja1 = new java.awt.Button();
-        jLabel16 = new javax.swing.JLabel();
-        Menu = new javax.swing.JMenuBar();
-        mInicio = new javax.swing.JMenu();
-        mArchivo = new javax.swing.JMenu();
-        mReportes = new javax.swing.JMenu();
-        mAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Main"); // NOI18N
@@ -275,8 +225,8 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelbtnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelbtnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addComponent(jPanelReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelNavegacion, java.awt.BorderLayout.LINE_START);
@@ -763,20 +713,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
 
         getContentPane().add(PanelContenedor, java.awt.BorderLayout.CENTER);
 
-        mInicio.setText("Inicio");
-        Menu.add(mInicio);
-
-        mArchivo.setText("Archivo");
-        Menu.add(mArchivo);
-
-        mReportes.setText("Reportes");
-        Menu.add(mReportes);
-
-        mAyuda.setText("Ayuda");
-        Menu.add(mAyuda);
-
-        setJMenuBar(Menu);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -925,7 +861,6 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar Menu;
     private javax.swing.JPanel PanelContenedor;
     private javax.swing.JPanel PanelInicio;
     private javax.swing.JPanel PanelInicio1;
@@ -978,16 +913,5 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoMaterias;
     private javax.swing.JLabel lblIconoPerfil;
     private javax.swing.JLabel lblIconoReportes;
-    private javax.swing.JLabel lblSubTitulo;
-    private javax.swing.JLabel lnlTutulo;
-    private javax.swing.JMenu mArchivo;
-    private javax.swing.JMenu mAyuda;
-    private javax.swing.JMenu mInicio;
-    private javax.swing.JMenu mReportes;
-    private javax.swing.JTextField txtAño;
-    private javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtCuatrimestre;
-    private javax.swing.JTextField txtMateria;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
