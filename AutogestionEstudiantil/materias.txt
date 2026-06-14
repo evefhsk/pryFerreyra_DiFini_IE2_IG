@@ -1,0 +1,7 @@
+Zaira;1234;1;2020
+zaira;456;1;2
+jorge;545;2;3
+ana;876;2;2
+lengua;234;1;2
+quimica;345;1;4
+lengua;444;2;3
