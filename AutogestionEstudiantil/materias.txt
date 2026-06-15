@@ -5,3 +5,4 @@ ana;876;2;2
 lengua;234;1;2
 quimica;345;1;4
 lengua;444;2;3
+matematicas;243;2;2
