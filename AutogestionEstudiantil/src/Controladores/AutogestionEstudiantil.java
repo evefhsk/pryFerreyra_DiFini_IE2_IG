@@ -1,3 +1,5 @@
+package Controladores;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -18,24 +20,27 @@ import javax.swing.table.DefaultTableModel;
 import autogestionestudiantil.Modelos.Materia;
 import java.util.ArrayList; 
 
-public class AutegestionEstudiantil extends javax.swing.JFrame {
+public class AutogestionEstudiantil extends javax.swing.JFrame {
     
     private MateriaController controller = new MateriaController(); //Objeto para instanciar el controller de materias
     java.awt.CardLayout layout;
-    
-    
+     
+    private InscripcionesController controladorInscripciones;
    
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AutegestionEstudiantil.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AutogestionEstudiantil.class.getName());
 
     /**
      * Creates new form AutegestionEstudiantil
      */
     
-    public AutegestionEstudiantil() {
+    public AutogestionEstudiantil() {
         
         //Promt: Como colocar imagenes en java swing
         initComponents();
+        
+        this.controladorInscripciones = new Controladores.InscripcionesController(this);
+        
         colocarIcono(lblIconoPerfil, "/imgs/usuario.png");
         colocarIcono(lblIconoInicio, "/imgs/NInicio.png");
         colocarIcono(lblIconoMaterias, "/imgs/NMaterias.png");
@@ -136,6 +141,7 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTablaListar = new javax.swing.JTable();
+        btnAtras5 = new javax.swing.JButton();
         PantallaReportes = new javax.swing.JPanel();
         PantallaMaterias = new javax.swing.JPanel();
         btnInscribirse = new javax.swing.JButton();
@@ -603,11 +609,9 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel21)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(txtCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27))
-                .addGap(18, 18, 18)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblMensajeCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -873,11 +877,19 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
+        btnAtras5.setBackground(new java.awt.Color(0, 0, 153));
+        btnAtras5.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras5.setText("Volver atras");
+        btnAtras5.addActionListener(this::btnAtras5ActionPerformed);
+
         javax.swing.GroupLayout PantallaListarMateriasLayout = new javax.swing.GroupLayout(PantallaListarMaterias);
         PantallaListarMaterias.setLayout(PantallaListarMateriasLayout);
         PantallaListarMateriasLayout.setHorizontalGroup(
             PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaListarMateriasLayout.createSequentialGroup()
+                .addContainerGap(521, Short.MAX_VALUE)
+                .addComponent(btnAtras5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
             .addGroup(PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -886,7 +898,10 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         );
         PantallaListarMateriasLayout.setVerticalGroup(
             PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(btnAtras5)
+                .addContainerGap(555, Short.MAX_VALUE))
             .addGroup(PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -969,9 +984,9 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(PantallaMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PantallaMateriasLayout.createSequentialGroup()
-                        .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnListarMaterias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))
@@ -1465,6 +1480,14 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     private void btnListarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarMateriasActionPerformed
         // TODO add your handling code here:
         this.layout.show(PanelContenedor, "PantallaListarMaterias");
+
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales = daoInscrip.cargarInscripciones(materiasVivas);
+
+        this.actualizarTablaInscripciones(inscripcionesReales);
         
     }//GEN-LAST:event_btnListarMateriasActionPerformed
 
@@ -1573,6 +1596,8 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         String codigo = txtCodigo.getText().trim();
         String txtCuatri = txtCuatrimestre.getText().trim();
         String añoTexto = txtAño.getText().trim();
+        
+        
 
     // VALIDAR NOMBRE
         if (nombre.isEmpty()) 
@@ -1648,20 +1673,13 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
             return;
         }
 
-        boolean agregado = controller.agregarMateria(
-                nombre,
-                codigo,
-                cuatrimestre,
-                anio);
+        boolean agregado = controller.agregarMateria(nombre, codigo, cuatrimestre, anio);
 
         if (agregado) {
+            Materia materiaCreada = controller.buscarPorCodigo(codigo);
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Materia inscripta correctamente.");
+            this.controladorInscripciones.registrarInscripcionDirecta(materiaCreada);
 
-            //ActualizarListaMaterias(); Agregar metodo cuando este el controller de InscripcionMaterias
-            
             txtNombre.setText("");
             txtCodigo.setText("");
             txtCuatrimestre.setText("");
@@ -1672,14 +1690,13 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
             lblMensajeCuatrimestre.setText("");
             lblMensajeAño.setText("");
 
-        } else {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "No se pudo inscribir la materia.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }   
+            } else {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No se pudo inscribir la materia.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                }   
     }//GEN-LAST:event_btnInscribirmeActionPerformed
 
     private void txtMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMateriasActionPerformed
@@ -1892,6 +1909,40 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegsitrarAsistenciaMateriaActionPerformed
 
+    private void btnAtras5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras5ActionPerformed
+        this.layout.show(PanelContenedor, "PantallaMaterias"); 
+    }//GEN-LAST:event_btnAtras5ActionPerformed
+
+    //Inscripcion Controller
+    
+    public void mostrarError(String mensaje) {
+        javax.swing.JOptionPane.showMessageDialog(this, mensaje, "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        javax.swing.JOptionPane.showMessageDialog(this, mensaje, "Éxito", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void actualizarTablaInscripciones(java.util.ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> lista) {
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+
+        modelo.setRowCount(0);
+        if (lista == null) {
+            return;
+        }
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : lista) {
+            if (ins != null && ins.getMateria() != null) {
+                Object[] fila = new Object[]{
+                    ins.getMateria().getNombre(),  
+                    ins.getCondicion(),           
+                    ins.getPromedio()             
+                };
+                modelo.addRow(fila);
+            }
+        }
+     
+    }
     
     
     
@@ -1917,7 +1968,7 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new AutegestionEstudiantil().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new AutogestionEstudiantil().setVisible(true));
         
 
         
@@ -1997,6 +2048,7 @@ public class AutegestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JButton btnAtras2;
     private javax.swing.JButton btnAtras3;
     private javax.swing.JButton btnAtras4;
+    private javax.swing.JButton btnAtras5;
     private javax.swing.JButton btnAtras6;
     private javax.swing.JButton btnBuscarMateria;
     private java.awt.Button btnBuscarMateriaCodigo;

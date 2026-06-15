@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class InscripcionMateriaDAO {
 
-    private static final String ARCHIVO = "inscripciones.txt";
+   private static final String ARCHIVO = "inscripciones.txt";
 
     // LEER
     public ArrayList<InscripcionMateria> cargarInscripciones(
@@ -42,10 +42,13 @@ public class InscripcionMateriaDAO {
                     Materia materiaEncontrada = null;
 
                     for (Materia m : materias) {
+                        
+                        if (m == null || m.getCodigo() == null) {
+                            continue;
+                        }
 
-                        if (m.getCodigo()
-                                .equals(codigo)) {
-
+                        // CAMBIAZO ACÁ: trim() limpia espacios fantasmas e equalsIgnoreCase ignora mayúsculas/minúsculas
+                        if (m.getCodigo().trim().equalsIgnoreCase(codigo.trim())) {
                             materiaEncontrada = m;
                             break;
                         }
