@@ -145,6 +145,13 @@ public class InscripcionMateria implements Evaluable {
         return inscripcion;
     }
     
+    public void registrarClase(boolean asistio) {
+        this.totalClases++;
+        if (asistio) {
+            this.clasesAsistidas++;
+        }
+    }
+    
 }
  
 

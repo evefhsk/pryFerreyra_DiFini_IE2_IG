@@ -1017,7 +1017,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaMaterias, "PantallaMaterias");
@@ -1475,8 +1475,37 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
         // TODO add your handling code here:
         this.layout.show(PanelContenedor, "PantallaAsistencia");
+        
+        PantallaGuardarAsistencia.setVisible(false);
+        btgAsistencia.clearSelection(); 
+        
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> listaCruzada = daoInscrip.cargarInscripciones(materiasVivas);
+        
+        this.controladorInscripciones = new Controladores.InscripcionesController(this);
+        
+        javax.swing.table.DefaultTableModel modeloAsistencia = (javax.swing.table.DefaultTableModel) tblTablaAsistencia.getModel();
+        modeloAsistencia.setRowCount(0);
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : listaCruzada) {
+            if (ins != null && ins.getMateria() != null) {
+                modeloAsistencia.addRow(new Object[]{
+                    ins.getMateria().getNombre(),
+                    ins.getCondicion(),
+                    ins.getPorcentajeAsistencia(), 
+                    ins.getPromedio()
+                });
+            }
+        }
+        
+        tblTablaAsistencia.revalidate();
+        tblTablaAsistencia.repaint();
     }//GEN-LAST:event_btnRegistrarAsistenciaActionPerformed
 
+    
+    
     private void btnListarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarMateriasActionPerformed
         // TODO add your handling code here:
         this.layout.show(PanelContenedor, "PantallaListarMaterias");
@@ -1484,10 +1513,21 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
 
         autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
-        
         ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales = daoInscrip.cargarInscripciones(materiasVivas);
 
-        this.actualizarTablaInscripciones(inscripcionesReales);
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+        modelo.setRowCount(0);
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : inscripcionesReales) {
+            if (ins != null && ins.getMateria() != null) {
+                modelo.addRow(new Object[]{
+                    ins.getMateria().getNombre(),
+                    ins.getCondicion(),
+                    ins.getPorcentajeAsistencia(), // Número puro para que coincida con el tipo de la columna
+                    ins.getPromedio()
+                });
+            }
+        }
         
     }//GEN-LAST:event_btnListarMateriasActionPerformed
 
@@ -1905,8 +1945,45 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         this.layout.show(PanelContenedor, "PantallaMaterias"); 
     }//GEN-LAST:event_btnAtras6ActionPerformed
 
+     
+    
     private void btnRegsitrarAsistenciaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegsitrarAsistenciaMateriaActionPerformed
         // TODO add your handling code here:
+        int filaSeleccionada = tblTablaAsistencia.getSelectedRow();
+        
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una materia de la lista.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (!rdbPresente.isSelected() && !rdbAusente.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar si el alumno estuvo Presente o Ausente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+        autogestionestudiantil.DAO.InscripcionMateriaDAO dao = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> listaFresca = dao.cargarInscripciones(materiasVivas);
+        
+        autogestionestudiantil.Modelos.InscripcionMateria inscripcion = listaFresca.get(filaSeleccionada);
+        
+        if (rdbPresente.isSelected()) {
+            inscripcion.registrarClase(true);
+        } else {
+            inscripcion.registrarClase(false); 
+        }
+
+        dao.guardarInscripciones(listaFresca);
+
+        JOptionPane.showMessageDialog(this, "Asistencia registrada correctamente para: " + inscripcion.getMateria().getNombre(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        btgAsistencia.clearSelection();
+        PantallaGuardarAsistencia.setVisible(false);
+        
+        // Refrescamos la pantalla automáticamente
+        btnRegistrarAsistenciaActionPerformed(null);
+        
+        
     }//GEN-LAST:event_btnRegsitrarAsistenciaMateriaActionPerformed
 
     private void btnAtras5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras5ActionPerformed
