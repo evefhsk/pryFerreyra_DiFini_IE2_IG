@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import autogestionestudiantil.Modelos.Materia;
 import java.util.ArrayList; 
+import autogestionestudiantil.Modelos.InscripcionMateria;
 
 public class AutogestionEstudiantil extends javax.swing.JFrame {
     
@@ -110,6 +111,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         rdbAusente = new javax.swing.JRadioButton();
         btnRegsitrarAsistenciaMateria = new java.awt.Button();
         btnCancelarAsistencia = new javax.swing.JButton();
+        lblMensajeAsistencia = new javax.swing.JLabel();
         btnAtras6 = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         PantallaCalificaciones = new javax.swing.JPanel();
@@ -121,13 +123,14 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         txtCodigoNota = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         btnCancelarNota = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblTablaCalificaciones = new javax.swing.JTable();
         lblMensajeCodigoNota = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         spnNota = new javax.swing.JSpinner();
         lblMensajeNota = new javax.swing.JLabel();
         btnAtras4 = new javax.swing.JButton();
+        PanelPromedioActualizado = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblTablaCalificaciones = new javax.swing.JTable();
         PantallaInscribirse = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -381,7 +384,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jPanelbtnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelbtnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelNavegacion, java.awt.BorderLayout.LINE_START);
@@ -441,6 +444,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         btnCancelarAsistencia.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelarAsistencia.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarAsistencia.setText("Cancelar");
+        btnCancelarAsistencia.addActionListener(this::btnCancelarAsistenciaActionPerformed);
 
         javax.swing.GroupLayout PantallaGuardarAsistenciaLayout = new javax.swing.GroupLayout(PantallaGuardarAsistencia);
         PantallaGuardarAsistencia.setLayout(PantallaGuardarAsistenciaLayout);
@@ -457,7 +461,10 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addGroup(PantallaGuardarAsistenciaLayout.createSequentialGroup()
                         .addComponent(btnCancelarAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                         .addGap(167, 167, 167)
-                        .addComponent(btnRegsitrarAsistenciaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnRegsitrarAsistenciaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PantallaGuardarAsistenciaLayout.createSequentialGroup()
+                        .addComponent(lblMensajeAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PantallaGuardarAsistenciaLayout.setVerticalGroup(
@@ -467,7 +474,9 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PantallaGuardarAsistenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbPresente)
                     .addComponent(rdbAusente))
-                .addGap(20, 20, 20)
+                .addGap(2, 2, 2)
+                .addComponent(lblMensajeAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PantallaGuardarAsistenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnCancelarAsistencia)
                     .addComponent(btnRegsitrarAsistenciaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -527,7 +536,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(jLabel35))
                 .addGap(18, 18, 18)
                 .addComponent(PantallaGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PantallaAsistenciaLayout = new javax.swing.GroupLayout(PantallaAsistencia);
@@ -567,6 +576,19 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         btnCancelarNota.setBackground(new java.awt.Color(153, 153, 153));
         btnCancelarNota.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarNota.setText("Cancelar");
+        btnCancelarNota.addActionListener(this::btnCancelarNotaActionPerformed);
+
+        jLabel27.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel27.setText("*");
+
+        spnNota.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+
+        btnAtras4.setBackground(new java.awt.Color(0, 0, 153));
+        btnAtras4.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras4.setText("Volver atras");
+        btnAtras4.addActionListener(this::btnAtras4ActionPerformed);
 
         tblTablaCalificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -589,17 +611,21 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblTablaCalificaciones);
 
-        jLabel27.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel27.setText("*");
-
-        spnNota.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-
-        btnAtras4.setBackground(new java.awt.Color(0, 0, 153));
-        btnAtras4.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtras4.setText("Volver atras");
-        btnAtras4.addActionListener(this::btnAtras4ActionPerformed);
+        javax.swing.GroupLayout PanelPromedioActualizadoLayout = new javax.swing.GroupLayout(PanelPromedioActualizado);
+        PanelPromedioActualizado.setLayout(PanelPromedioActualizadoLayout);
+        PanelPromedioActualizadoLayout.setHorizontalGroup(
+            PanelPromedioActualizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPromedioActualizadoLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelPromedioActualizadoLayout.setVerticalGroup(
+            PanelPromedioActualizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPromedioActualizadoLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 235, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -631,12 +657,8 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel21)
@@ -644,6 +666,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(btnAtras4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addComponent(PanelPromedioActualizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(48, 48, 48)
@@ -675,9 +698,8 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegsitrarCalificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarNota, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
+                .addGap(38, 38, 38)
+                .addComponent(PanelPromedioActualizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(109, 109, 109)
@@ -958,7 +980,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaListarMaterias, "PantallaListarMaterias");
@@ -971,7 +993,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         );
         PantallaReportesLayout.setVerticalGroup(
             PantallaReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 627, Short.MAX_VALUE)
+            .addGap(0, 631, Short.MAX_VALUE)
         );
 
         PanelContenedor.add(PantallaReportes, "PantallaReportes");
@@ -1069,7 +1091,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaMaterias, "PantallaMaterias");
@@ -1086,11 +1108,9 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(270, 149));
 
         jLabel28.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Promedio General");
 
         lblMostrarPromedio.setFont(new java.awt.Font("Inter", 1, 36)); // NOI18N
-        lblMostrarPromedio.setForeground(new java.awt.Color(0, 0, 0));
         lblMostrarPromedio.setText("0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -1102,7 +1122,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblIconPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMostrarPromedio)
@@ -1117,18 +1137,16 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(lblIconPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblMostrarPromedio)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(270, 149));
 
         jLabel29.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Materias Inscriptas");
 
         lblMostrarCantmaterias.setFont(new java.awt.Font("Inter", 1, 36)); // NOI18N
-        lblMostrarCantmaterias.setForeground(new java.awt.Color(0, 0, 0));
         lblMostrarCantmaterias.setText("0");
 
         btnVerMaterias1.setBackground(new java.awt.Color(0, 0, 153));
@@ -1145,7 +1163,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblIconMateriasInscriptas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblIconMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1172,26 +1190,22 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVerMaterias1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblIconMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(270, 149));
 
         jLabel30.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Asistencia Crítica");
 
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Faltas:");
 
         lblCantFaltas.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
-        lblCantFaltas.setForeground(new java.awt.Color(0, 0, 0));
         lblCantFaltas.setText("-");
 
         lblMostrarasistenciaCritica.setForeground(new java.awt.Color(255, 0, 0));
 
-        btnVerMaterias.setActionCommand("");
         btnVerMaterias.setBackground(new java.awt.Color(0, 0, 153));
         btnVerMaterias.setForeground(new java.awt.Color(255, 255, 255));
         btnVerMaterias.setLabel("Ver Materias");
@@ -1202,7 +1216,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1235,36 +1249,28 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(jLabel31)
                     .addComponent(lblCantFaltas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMostrarasistenciaCritica, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+                .addComponent(lblMostrarasistenciaCritica, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVerMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
-        btnVerMaterias.getAccessibleContext().setAccessibleName("Ver Materias");
-
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setForeground(new java.awt.Color(0, 0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(270, 149));
 
         jLabel32.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Situación General");
 
         jLabel33.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Materias Aprobadas:");
 
         jLabel34.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Materias en curso:");
 
         lblcantMateriasAprobadas.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
-        lblcantMateriasAprobadas.setForeground(new java.awt.Color(0, 0, 0));
         lblcantMateriasAprobadas.setText("-");
 
         lblcantMateriasEnCurso.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
-        lblcantMateriasEnCurso.setForeground(new java.awt.Color(0, 0, 0));
         lblcantMateriasEnCurso.setText("-");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -1272,7 +1278,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lblIconEnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1299,13 +1305,11 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                     .addComponent(lblIconSituacionGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel33)
-                            .addComponent(lblcantMateriasAprobadas)))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel33)
+                        .addComponent(lblcantMateriasAprobadas))
                     .addComponent(lblIconAprobadas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1316,7 +1320,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblIconEnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         lnlTutulo.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
@@ -1362,7 +1366,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PanelInicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
@@ -1412,7 +1416,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         );
         PantallaPerfilLayout.setVerticalGroup(
             PantallaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 627, Short.MAX_VALUE)
+            .addGap(0, 631, Short.MAX_VALUE)
         );
 
         PanelContenedor.add(PantallaPerfil, "PantallaPerfil");
@@ -1540,7 +1544,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
             .addGroup(PantallaBuscarMateriaLayout.createSequentialGroup()
                 .addGap(176, 176, 176)
                 .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(btnAtras3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(PantallaBuscarMateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1559,12 +1563,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addGroup(PantallaBuscarMateriaLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(btnAtras3)))
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addContainerGap(513, Short.MAX_VALUE))
             .addGroup(PantallaBuscarMateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PantallaBuscarMateriaLayout.createSequentialGroup()
-                    .addGap(0, 95, Short.MAX_VALUE)
+                    .addGap(0, 96, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 95, Short.MAX_VALUE)))
+                    .addGap(0, 96, Short.MAX_VALUE)))
         );
 
         PanelContenedor.add(PantallaBuscarMateria, "PantallaBuscarMateria");
@@ -1654,7 +1658,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PantallaDarDeBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDarDeBaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaDarDeBaja, "PantallaDarDeBaja");
@@ -2008,9 +2012,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         this.layout.show(PanelContenedor, "PantallaMaterias"); 
     }//GEN-LAST:event_btnAtrasActionPerformed
 
-    //CAMBIAR CON INCSRIPCIONESCONTROLLER
-    
-    //metodo para probar si se muestran en la tabla, cambiar cuando esete InscripcionController
+    // LISTAR TODAS LAS INSCRIPCIONES
     private void ActualizarTablaMaterias() {
 
         DefaultTableModel modelo
@@ -2018,50 +2020,62 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
         modelo.setRowCount(0);
 
-        for (Materia materia : controller.listarMaterias()) {
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins
+                : controladorInscripciones.getInscripciones()) {
 
-            modelo.addRow(new Object[]{
-                materia.getNombre(),
-                materia.getCodigo(),
-                materia.getCuatrimestre(),
-                materia.getAnio()
-            });
+            if (ins != null && ins.getMateria() != null) {
+
+                modelo.addRow(new Object[]{
+                    ins.getMateria().getNombre(),
+                    ins.getCondicion(),
+                    ins.getPorcentajeAsistencia(),
+                    ins.getPromedio()
+                });
+            }
         }
     }
     
-    //Listar por nombre
-    private void ActualizarTablaMaterias(ArrayList<Materia> materias) {
+    // BUSCAR POR NOMBRE
+    private void ActualizarTablaMaterias(
+            ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> lista) {
 
         DefaultTableModel modelo
                 = (DefaultTableModel) tblTablaBuscar.getModel();
 
         modelo.setRowCount(0);
 
-        for (Materia materia : materias) {
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : lista) {
 
-            modelo.addRow(new Object[]{
-                materia.getNombre(),
-                materia.getCodigo(),
-                materia.getCuatrimestre(),
-                materia.getAnio()
-            });
+            if (ins != null && ins.getMateria() != null) {
+
+                modelo.addRow(new Object[]{
+                    ins.getMateria().getNombre(),
+                    ins.getCondicion(),
+                    ins.getPorcentajeAsistencia(),
+                    ins.getPromedio()
+                });
+            }
         }
     }
     
-    //Lista por codigo
-    private void ActualizarTablaMaterias(Materia materia) {
+    // BUSCAR POR CÓDIGO
+    private void ActualizarTablaMaterias(
+            autogestionestudiantil.Modelos.InscripcionMateria ins) {
 
         DefaultTableModel modelo
                 = (DefaultTableModel) tblTablaBuscar.getModel();
 
         modelo.setRowCount(0);
 
-        modelo.addRow(new Object[]{
-            materia.getNombre(),
-            materia.getCodigo(),
-            materia.getCuatrimestre(),
-            materia.getAnio()
-        });
+        if (ins != null && ins.getMateria() != null) {
+
+            modelo.addRow(new Object[]{
+                ins.getMateria().getNombre(),
+                ins.getCondicion(),
+                ins.getPorcentajeAsistencia(),
+                ins.getPromedio()
+            });
+        }
     }
     
     private void btnBuscarMateriaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMateriaCodigoActionPerformed
@@ -2081,11 +2095,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         // Bloquea la búsqueda por nombre
         btnBuscarMateriaNombre.setEnabled(false);
 
-        Materia materia = controller.buscarPorCodigo(codigo);
+        InscripcionMateria inscripcion
+                = controladorInscripciones.buscarPorCodigo(codigo);
 
-        if (materia != null) {
+        if (inscripcion != null) {
 
-            ActualizarTablaMaterias(materia);
+            ActualizarTablaMaterias(inscripcion);
 
         } else {
 
@@ -2126,11 +2141,11 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
             return;
         }
 
-        // Bloquear búsqueda por código
+// Bloquear búsqueda por código
         btnBuscarMateriaCodigo.setEnabled(false);
 
-        ArrayList<Materia> resultados
-                = controller.buscarPorNombre(nombre);
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> resultados
+                = controladorInscripciones.buscarPorNombre(nombre);
 
         if (resultados.isEmpty()) {
 
@@ -2150,8 +2165,95 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
     private void btnRegsitrarCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegsitrarCalificacionActionPerformed
         // TODO add your handling code here:
+        lblMensajeCodigoNota.setText("");
+        lblMensajeNota.setText("");
+
+        String codigo = txtCodigoNota.getText().trim();
+
+        double nota = Double.parseDouble(
+                spnNota.getValue().toString());
+
+        boolean hayErrores = false;
+
+        // VALIDAR CÓDIGO
+        if (codigo.isEmpty()) {
+
+            lblMensajeCodigoNota.setText(
+                    "Debe ingresar un código.");
+
+            hayErrores = true;
+        }
+
+        // VALIDAR NOTA
+        if (nota < 0 || nota > 10) {
+
+            lblMensajeNota.setText(
+                    "La nota debe estar entre 1 y 10.");
+
+            hayErrores = true;
+        }
+
+        if (hayErrores) {
+            return;
+        }
+
+        boolean registrada
+                = controladorInscripciones.registrarNota(
+                        codigo,
+                        nota);
+
+        if (!registrada) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No se pudo registrar la nota.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+
+            return;
+        }
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Calificación registrada correctamente.",
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        txtCodigoNota.setText("");
+        spnNota.setValue(1);
+
+        // Mostrar panel actualizado
+        this.layout.show(
+                PanelContenedor,
+                "PanelPromedioActualizado");
+
+        actualizarTablaCalificaciones();
     }//GEN-LAST:event_btnRegsitrarCalificacionActionPerformed
 
+    private void actualizarTablaCalificaciones() {
+
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblTablaCalificaciones.getModel();
+
+        modelo.setRowCount(0);
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins
+                : controladorInscripciones.getInscripciones()) {
+
+            if (ins != null
+                    && ins.getMateria() != null) {
+
+                modelo.addRow(new Object[]{
+                    ins.getMateria().getNombre(),
+                    ins.getCondicion(),
+                    ins.getPorcentajeAsistencia(),
+                    ins.getPromedio()
+
+                });
+            }
+        }
+    }
+    
     private void btnAtras4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras4ActionPerformed
         // TODO add your handling code here:
         this.layout.show(PanelContenedor, "PantallaMaterias"); 
@@ -2184,38 +2286,67 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     
     private void btnRegsitrarAsistenciaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegsitrarAsistenciaMateriaActionPerformed
         // TODO add your handling code here:
+        lblMensajeAsistencia.setText("");
+
         int filaSeleccionada = tblTablaAsistencia.getSelectedRow();
-        
+
         if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar una materia de la lista.", "Aviso", JOptionPane.WARNING_MESSAGE);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Debe seleccionar una materia de la lista.",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE);
+
             return;
         }
-        
-        if (!rdbPresente.isSelected() && !rdbAusente.isSelected()) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar si el alumno estuvo Presente o Ausente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+
+        if (!rdbPresente.isSelected()
+                && !rdbAusente.isSelected()) {
+
+            lblMensajeAsistencia.setText(
+                    "Debe seleccionar Presente o Ausente.");
+
             return;
         }
-        
-        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
-        autogestionestudiantil.DAO.InscripcionMateriaDAO dao = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
-        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> listaFresca = dao.cargarInscripciones(materiasVivas);
-        
-        autogestionestudiantil.Modelos.InscripcionMateria inscripcion = listaFresca.get(filaSeleccionada);
-        
+
+        ArrayList<Materia> materiasVivas
+                = this.controller.listarMaterias();
+
+        autogestionestudiantil.DAO.InscripcionMateriaDAO dao
+                = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> listaFresca
+                = dao.cargarInscripciones(materiasVivas);
+
+        autogestionestudiantil.Modelos.InscripcionMateria inscripcion
+                = listaFresca.get(filaSeleccionada);
+
         if (rdbPresente.isSelected()) {
+
             inscripcion.registrarClase(true);
+
         } else {
-            inscripcion.registrarClase(false); 
+
+            inscripcion.registrarClase(false);
         }
 
         dao.guardarInscripciones(listaFresca);
 
-        JOptionPane.showMessageDialog(this, "Asistencia registrada correctamente para: " + inscripcion.getMateria().getNombre(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(
+                this,
+                "Asistencia registrada correctamente para: "
+                + inscripcion.getMateria().getNombre(),
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        lblMensajeAsistencia.setText("");
 
         btgAsistencia.clearSelection();
+
         PantallaGuardarAsistencia.setVisible(false);
-        
-        // Refrescamos la pantalla automáticamente
+
+        // Refresca la tabla automáticamente
         btnRegistrarAsistenciaActionPerformed(null);
         
         
@@ -2256,27 +2387,57 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
     private void btnVerMaterias1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMaterias1ActionPerformed
         // TODO add your handling code here:
-        this.layout.show(PanelContenedor, "PantallaListarMaterias"); 
-        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+        this.layout.show(PanelContenedor, "PantallaListarMaterias");
 
-        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
-        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales = daoInscrip.cargarInscripciones(materiasVivas);
+        ArrayList<Materia> materiasVivas
+                = this.controller.listarMaterias();
 
-        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip
+                = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales
+                = daoInscrip.cargarInscripciones(materiasVivas);
+
+        javax.swing.table.DefaultTableModel modelo
+                = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+
         modelo.setRowCount(0);
 
-        for (autogestionestudiantil.Modelos.InscripcionMateria ins : inscripcionesReales) {
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins
+                : inscripcionesReales) {
+
             if (ins != null && ins.getMateria() != null) {
+
                 modelo.addRow(new Object[]{
                     ins.getMateria().getNombre(),
                     ins.getCondicion(),
-                    ins.getTotalClases(), 
-                    ins.getPorcentajeAsistencia(), 
+                    ins.getTotalClases(),
+                    ins.getPorcentajeAsistencia(),
                     ins.getPromedio()
                 });
             }
         }
+
+        lblMostrarCantmaterias.setText(
+                "Materias inscriptas: "
+                + inscripcionesReales.size());
     }//GEN-LAST:event_btnVerMaterias1ActionPerformed
+
+    private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
+        // TODO add your handling code here:
+        txtCodigoNota.setText("");
+
+        spnNota.setValue(1);
+
+        lblMensajeCodigoNota.setText("");
+        lblMensajeNota.setText("");
+    }//GEN-LAST:event_btnCancelarNotaActionPerformed
+
+    private void btnCancelarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAsistenciaActionPerformed
+        // TODO add your handling code here:
+        btgAsistencia.clearSelection();
+        lblMensajeAsistencia.setText("");
+    }//GEN-LAST:event_btnCancelarAsistenciaActionPerformed
 
     //Inscripcion Controller
     
@@ -2454,6 +2615,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JPanel PanelInicio;
     private javax.swing.JPanel PanelInicio1;
     private javax.swing.JPanel PanelNavegacion;
+    private javax.swing.JPanel PanelPromedioActualizado;
     private javax.swing.JPanel PantallaAsistencia;
     private javax.swing.JPanel PantallaBuscarMateria;
     private javax.swing.JPanel PantallaCalificaciones;
@@ -2560,6 +2722,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel lblIconoMaterias;
     private javax.swing.JLabel lblIconoPerfil;
     private javax.swing.JLabel lblIconoReportes;
+    private javax.swing.JLabel lblMensajeAsistencia;
     private javax.swing.JLabel lblMensajeAño;
     private javax.swing.JLabel lblMensajeBuscarCodigo;
     private javax.swing.JLabel lblMensajeBuscarNombre;

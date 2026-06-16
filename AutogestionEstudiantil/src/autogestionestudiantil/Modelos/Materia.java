@@ -4,8 +4,6 @@
  */
 package autogestionestudiantil.Modelos;
 
-import java.util.HashSet;
-
 public class Materia implements Consultable {
 
     private String nombre;
@@ -13,114 +11,88 @@ public class Materia implements Consultable {
     private int cuatrimestre;
     private int anio;
 
-    private static HashSet<String> codigosUsados = new HashSet<>();
+    public Materia(String nombre,
+            String codigo,
+            int cuatrimestre,
+            int anio) {
 
-    public Materia(String nombre, String codigo, int cuatrimestre, int anio) {
         setNombre(nombre);
-        setCodigo(codigo); 
+        setCodigo(codigo);
         setCuatrimestre(cuatrimestre);
         setAnio(anio);
     }
 
     @Override
-    public void mostrarResumen() 
-    {
+    public void mostrarResumen() {
+
         System.out.println("=== RESUMEN DE MATERIA ===");
-
         System.out.println("Materia: " + nombre);
+        System.out.println("Código: " + codigo);
+        System.out.println("Cuatrimestre: " + cuatrimestre);
         System.out.println("Año: " + anio);
-
-        if (codigo != null) 
-        {
-            System.out.println("Código: " + codigo);
-        } 
-        else 
-        {
-            System.out.println("Código inválido o repetido");
-        }
-
-        if (cuatrimestre == 1 || cuatrimestre == 2) 
-        {
-            System.out.println("Cuatrimestre: " + cuatrimestre);
-        } 
-        else 
-        {
-            System.out.println("Cuatrimestre inválido");
-        }
     }
 
     // GETTERS
-    public String getNombre() 
-    {
+    public String getNombre() {
         return nombre;
     }
 
-    public String getCodigo() 
-    {
+    public String getCodigo() {
         return codigo;
     }
 
-    public int getCuatrimestre() 
-    {
+    public int getCuatrimestre() {
         return cuatrimestre;
     }
 
-    public int getAnio() 
-    {
+    public int getAnio() {
         return anio;
     }
 
-    // SETTERS CON VALIDACIÓN
+    // SETTERS
     public void setNombre(String nombre) {
-        if (nombre != null && !nombre.isEmpty()) 
-        {
+
+        if (nombre != null && !nombre.trim().isEmpty()) {
             this.nombre = nombre;
-        } 
-        else 
-        {
+        } else {
             this.nombre = "Sin nombre";
         }
     }
 
     public void setCodigo(String codigo) {
-        if (codigo == null || codigo.isEmpty() || codigosUsados.contains(codigo)) 
-        {
-            this.codigo = null;
-        } 
-        else 
-        {
-            this.codigo = codigo;
-            codigosUsados.add(codigo);
+
+        if (codigo != null && !codigo.trim().isEmpty()) {
+            this.codigo = codigo.trim();
+        } else {
+            this.codigo = "";
         }
     }
 
-    public void setCuatrimestre(int cuatrimestre) 
-    {
-        if (cuatrimestre == 1 || cuatrimestre == 2) 
-        {
+    public void setCuatrimestre(int cuatrimestre) {
+
+        if (cuatrimestre == 1 || cuatrimestre == 2) {
             this.cuatrimestre = cuatrimestre;
-        } 
-        else 
-        {
+        } else {
             this.cuatrimestre = -1;
         }
     }
 
-    public void setAnio(int anio) 
-    {
-        if (anio > 0) 
-        {
+    public void setAnio(int anio) {
+
+        if (anio > 0) {
             this.anio = anio;
-        } 
-        else 
-        {
+        } else {
             this.anio = -1;
         }
     }
-    
+
     // DAO
     public String toTexto() {
-        return nombre + ";" + codigo + ";" + cuatrimestre + ";" + anio;
+
+        return nombre + ";"
+                + codigo + ";"
+                + cuatrimestre + ";"
+                + anio;
     }
 
     public static Materia fromTexto(String linea) {
@@ -134,4 +106,4 @@ public class Materia implements Consultable {
                 Integer.parseInt(datos[3])
         );
     }
-} 
+}

@@ -126,4 +126,60 @@ public class InscripcionesController {
         vista.mostrarMensaje("Inscripción exitosa a: " + materiaInstancia.getNombre());
     }
     
+    public InscripcionMateria buscarPorCodigo(String codigo) {
+
+        for (InscripcionMateria ins : inscripciones) {
+
+            if (ins != null
+                    && ins.getMateria() != null
+                    && ins.getMateria().getCodigo() != null
+                    && ins.getMateria().getCodigo()
+                            .equalsIgnoreCase(codigo)) {
+
+                return ins;
+            }
+        }
+
+        return null;
+    }
+    
+    public ArrayList<InscripcionMateria> buscarPorNombre(
+            String nombre) {
+
+        ArrayList<InscripcionMateria> resultado
+                = new ArrayList<>();
+
+        for (InscripcionMateria ins : inscripciones) {
+
+            if (ins != null
+                    && ins.getMateria() != null
+                    && ins.getMateria().getNombre() != null
+                    && ins.getMateria().getNombre()
+                            .toLowerCase()
+                            .contains(nombre.toLowerCase())) {
+
+                resultado.add(ins);
+            }
+        }
+
+        return resultado;
+    }
+    
+    //Registrar notas
+    public boolean registrarNota(String codigo, double nota) {
+
+        InscripcionMateria inscripcion = buscarPorCodigo(codigo);
+
+        if (inscripcion == null) {
+            return false;
+        }
+
+        boolean agregada = inscripcion.agregarNota(nota);
+
+        if (agregada) {
+            inscripcionDao.guardarInscripciones(inscripciones);
+        }
+
+        return agregada;
+    }
 }

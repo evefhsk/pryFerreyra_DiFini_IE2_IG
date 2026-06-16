@@ -86,7 +86,7 @@ public class MateriaController {
     // DAR DE BAJA
     public boolean darDeBajaMateria(String codigo) {
 
-        Materia materia = buscarPorCodigo(codigo);
+        Materia materia = buscarPorCodigo(codigo); //Por esto se deja el metodo buscar por codigo aca aunque ya este en el InscripcionesController
 
         if (materia != null) {
 
