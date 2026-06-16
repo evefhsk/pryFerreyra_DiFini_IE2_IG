@@ -45,6 +45,13 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         colocarIcono(lblIconoInicio, "/imgs/NInicio.png");
         colocarIcono(lblIconoMaterias, "/imgs/NMaterias.png");
         colocarIcono(lblIconoReportes, "/imgs/NReportes.png");
+        colocarIcono (lblIconPromedio, "/imgs/IconPromedio.png");
+        colocarIcono (lblIconMateriasInscriptas, "/imgs/IconMateriasInscriptas.png");
+        colocarIcono (lblIconMaterias, "/imgs/IconMaterias2.png");
+        colocarIcono (lblIconAsistenciacritica, "/imgs/IconAsistenciacritica.png");
+        colocarIcono (lblIconSituacionGeneral, "/imgs/IconSituacionGeneral.png");
+        colocarIcono (lblIconAprobadas, "/imgs/IconAprobadas.png");
+        colocarIcono (lblIconEnCurso, "/imgs/IconEnCurso.png");
         
         // 3. Tus hovers corregidos con los nombres del panel de navegación lateral
         aplicarEfectoHover(jPanelbtnPerfil, btnPerfil);   // Perfil
@@ -59,6 +66,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         this.layout.show(PanelContenedor, "PantallaInicio");
        
         PantallaGuardarAsistencia.setVisible(false);
+        
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> datosInicio = daoInscrip.cargarInscripciones(materiasVivas);
+        
+        actualizarPanelInicio(datosInicio);
     }
 
     /**
@@ -98,6 +111,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         btnRegsitrarAsistenciaMateria = new java.awt.Button();
         btnCancelarAsistencia = new javax.swing.JButton();
         btnAtras6 = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
         PantallaCalificaciones = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -156,9 +170,31 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         PanelInicio = new javax.swing.JPanel();
         PanelInicio1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        lblIconPromedio = new javax.swing.JLabel();
+        lblMostrarPromedio = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        lblIconMateriasInscriptas = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        lblMostrarCantmaterias = new javax.swing.JLabel();
+        lblIconMaterias = new javax.swing.JLabel();
+        btnVerMaterias1 = new java.awt.Button();
         jPanel5 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        lblIconAsistenciacritica = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        lblCantFaltas = new javax.swing.JLabel();
+        lblMostrarasistenciaCritica = new javax.swing.JLabel();
+        btnVerMaterias = new java.awt.Button();
         jPanel6 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        lblIconSituacionGeneral = new javax.swing.JLabel();
+        lblIconAprobadas = new javax.swing.JLabel();
+        lblIconEnCurso = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        lblcantMateriasAprobadas = new javax.swing.JLabel();
+        lblcantMateriasEnCurso = new javax.swing.JLabel();
         lnlTutulo = new javax.swing.JLabel();
         lblSubTitulo = new javax.swing.JLabel();
         PantallaPerfil = new javax.swing.JPanel();
@@ -443,47 +479,55 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         btnAtras6.setText("Volver atras");
         btnAtras6.addActionListener(this::btnAtras6ActionPerformed);
 
+        jLabel35.setFont(new java.awt.Font("Inter", 2, 13)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel35.setText("Regular: igual o mayor a 75%");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(203, 203, 203))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(btnAtras6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22)
-                    .addComponent(PantallaGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(87, 87, 87)
+                .addComponent(jLabel22)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addComponent(btnAtras6, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(267, 267, 267)))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addComponent(PantallaGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(btnAtras6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel22)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel23)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel23)
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSeleccionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSeleccionar)
+                    .addComponent(jLabel35))
+                .addGap(18, 18, 18)
                 .addComponent(PantallaGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PantallaAsistenciaLayout = new javax.swing.GroupLayout(PantallaAsistencia);
@@ -1041,57 +1085,238 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(270, 149));
 
+        jLabel28.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Promedio General");
+
+        lblMostrarPromedio.setFont(new java.awt.Font("Inter", 1, 36)); // NOI18N
+        lblMostrarPromedio.setForeground(new java.awt.Color(0, 0, 0));
+        lblMostrarPromedio.setText("0");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblIconPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMostrarPromedio)
+                .addGap(94, 94, 94))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel28)
+                    .addComponent(lblIconPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblMostrarPromedio)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(270, 149));
 
+        jLabel29.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Materias Inscriptas");
+
+        lblMostrarCantmaterias.setFont(new java.awt.Font("Inter", 1, 36)); // NOI18N
+        lblMostrarCantmaterias.setForeground(new java.awt.Color(0, 0, 0));
+        lblMostrarCantmaterias.setText("0");
+
+        btnVerMaterias1.setBackground(new java.awt.Color(0, 0, 153));
+        btnVerMaterias1.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerMaterias1.setLabel("Ver Materias");
+        btnVerMaterias1.addActionListener(this::btnVerMaterias1ActionPerformed);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblIconMateriasInscriptas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 18, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(lblIconMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVerMaterias1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(lblMostrarCantmaterias)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel29)
+                    .addComponent(lblIconMateriasInscriptas, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblMostrarCantmaterias)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVerMaterias1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblIconMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(270, 149));
 
+        jLabel30.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Asistencia Crítica");
+
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Faltas:");
+
+        lblCantFaltas.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
+        lblCantFaltas.setForeground(new java.awt.Color(0, 0, 0));
+        lblCantFaltas.setText("-");
+
+        lblMostrarasistenciaCritica.setForeground(new java.awt.Color(255, 0, 0));
+
+        btnVerMaterias.setActionCommand("");
+        btnVerMaterias.setBackground(new java.awt.Color(0, 0, 153));
+        btnVerMaterias.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerMaterias.setLabel("Ver Materias");
+        btnVerMaterias.addActionListener(this::btnVerMateriasActionPerformed);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMostrarasistenciaCritica, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jLabel31)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblCantFaltas))))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblIconAsistenciacritica, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnVerMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel30)
+                    .addComponent(lblIconAsistenciacritica, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(lblCantFaltas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMostrarasistenciaCritica, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVerMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
+        btnVerMaterias.getAccessibleContext().setAccessibleName("Ver Materias");
+
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setForeground(new java.awt.Color(0, 0, 0));
         jPanel6.setPreferredSize(new java.awt.Dimension(270, 149));
+
+        jLabel32.setFont(new java.awt.Font("Inter", 1, 18)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Situación General");
+
+        jLabel33.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Materias Aprobadas:");
+
+        jLabel34.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setText("Materias en curso:");
+
+        lblcantMateriasAprobadas.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
+        lblcantMateriasAprobadas.setForeground(new java.awt.Color(0, 0, 0));
+        lblcantMateriasAprobadas.setText("-");
+
+        lblcantMateriasEnCurso.setFont(new java.awt.Font("Inter", 1, 13)); // NOI18N
+        lblcantMateriasEnCurso.setForeground(new java.awt.Color(0, 0, 0));
+        lblcantMateriasEnCurso.setText("-");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lblIconEnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel34)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblcantMateriasEnCurso))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lblIconAprobadas, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblcantMateriasAprobadas))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblIconSituacionGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 149, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(lblIconSituacionGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(lblcantMateriasAprobadas)))
+                    .addComponent(lblIconAprobadas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34)
+                            .addComponent(lblcantMateriasEnCurso)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblIconEnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         lnlTutulo.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
@@ -1421,7 +1646,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(txtMaterias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMensajeCodigoBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
@@ -1429,7 +1654,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PantallaDarDeBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDarDeBaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaDarDeBaja, "PantallaDarDeBaja");
@@ -2000,6 +2225,59 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         this.layout.show(PanelContenedor, "PantallaMaterias"); 
     }//GEN-LAST:event_btnAtras5ActionPerformed
 
+    private void btnVerMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMateriasActionPerformed
+        // TODO add your handling code here:
+        this.layout.show(PanelContenedor, "PantallaAsistencia");
+        PantallaGuardarAsistencia.setVisible(false);
+        btgAsistencia.clearSelection(); 
+        
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> listaCruzada = daoInscrip.cargarInscripciones(materiasVivas);
+        
+        this.controladorInscripciones = new Controladores.InscripcionesController(this);
+        
+        javax.swing.table.DefaultTableModel modeloAsistencia = (javax.swing.table.DefaultTableModel) tblTablaAsistencia.getModel();
+        modeloAsistencia.setRowCount(0);
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : listaCruzada) { // O 'inscripcionesReales' según la pantalla
+            if (ins != null && ins.getMateria() != null) {
+                modeloAsistencia.addRow(new Object[]{
+                    ins.getMateria().getNombre(),  
+                    ins.getCondicion(),           
+                    ins.getTotalClases(),         
+                    ins.getPorcentajeAsistencia(), 
+                    ins.getPromedio()             
+                });
+            }
+        }
+    }//GEN-LAST:event_btnVerMateriasActionPerformed
+
+    private void btnVerMaterias1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMaterias1ActionPerformed
+        // TODO add your handling code here:
+        this.layout.show(PanelContenedor, "PantallaListarMaterias"); 
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales = daoInscrip.cargarInscripciones(materiasVivas);
+
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+        modelo.setRowCount(0);
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : inscripcionesReales) {
+            if (ins != null && ins.getMateria() != null) {
+                modelo.addRow(new Object[]{
+                    ins.getMateria().getNombre(),
+                    ins.getCondicion(),
+                    ins.getTotalClases(), 
+                    ins.getPorcentajeAsistencia(), 
+                    ins.getPromedio()
+                });
+            }
+        }
+    }//GEN-LAST:event_btnVerMaterias1ActionPerformed
+
     //Inscripcion Controller
     
     public void mostrarError(String mensaje) {
@@ -2112,6 +2390,63 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void actualizarPanelInicio(ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripciones) {
+    
+    // ESTADO 1: SI NO HAY ASIGNATURAS CARGADAS (image_1.png)
+    if (inscripciones == null || inscripciones.isEmpty()) {
+        lblMostrarPromedio.setText("Aun sin datos");
+        lblMostrarCantmaterias.setText("0");
+        lblCantFaltas.setText("Aun sin datos");
+        lblMostrarasistenciaCritica.setText(""); 
+        lblcantMateriasAprobadas.setText("0");
+        lblcantMateriasEnCurso.setText("0");
+        return; 
+    }
+
+    // ESTADO 2: PROCESAMIENTO DE DATOS ACTIVOS (image_2.png)
+    double sumaPromedios = 0;
+    int materiasAprobadas = 0;
+    int materiasEnCurso = 0;
+    int faltasTotales = 0;
+    int materiasEnAlerta = 0;
+
+    for (autogestionestudiantil.Modelos.InscripcionMateria ins : inscripciones) {
+        if (ins != null) {
+            sumaPromedios += ins.getPromedio();
+
+            if (ins.getPromedio() >= 4 && ins.getPorcentajeAsistencia() >= 75) {
+                materiasAprobadas++;
+            } else {
+                materiasEnCurso++;
+            }
+
+            int faltasDeEstaMateria = ins.getTotalClases() - ins.getClasesAsistidas();
+            faltasTotales += faltasDeEstaMateria;
+
+            if (ins.getPorcentajeAsistencia() < 75 || "Libre".equalsIgnoreCase(ins.getCondicion())) {
+                materiasEnAlerta++;
+            }
+        }
+    }
+
+    double promedioGeneral = sumaPromedios / inscripciones.size();
+    lblMostrarPromedio.setText(String.format("%.2f", promedioGeneral));
+
+    lblMostrarCantmaterias.setText(String.valueOf(inscripciones.size()));
+
+    lblCantFaltas.setText(String.valueOf(faltasTotales));
+    if (materiasEnAlerta == 0) {
+        lblMostrarasistenciaCritica.setText("Sin alertas");
+    } else if (materiasEnAlerta == 1) {
+        lblMostrarasistenciaCritica.setText("1 Materia con alerta");
+    } else {
+        lblMostrarasistenciaCritica.setText(materiasEnAlerta + " Materias con alerta");
+    }
+
+    lblcantMateriasAprobadas.setText(String.valueOf(materiasAprobadas));
+    lblcantMateriasEnCurso.setText(String.valueOf(materiasEnCurso));
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar Menu;
@@ -2159,6 +2494,8 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private java.awt.Button btnRegsitrarCalificacion;
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSeleccionar;
+    private java.awt.Button btnVerMaterias;
+    private java.awt.Button btnVerMaterias1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2179,7 +2516,15 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2203,6 +2548,14 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblCantFaltas;
+    private javax.swing.JLabel lblIconAprobadas;
+    private javax.swing.JLabel lblIconAsistenciacritica;
+    private javax.swing.JLabel lblIconEnCurso;
+    private javax.swing.JLabel lblIconMaterias;
+    private javax.swing.JLabel lblIconMateriasInscriptas;
+    private javax.swing.JLabel lblIconPromedio;
+    private javax.swing.JLabel lblIconSituacionGeneral;
     private javax.swing.JLabel lblIconoInicio;
     private javax.swing.JLabel lblIconoMaterias;
     private javax.swing.JLabel lblIconoPerfil;
@@ -2216,7 +2569,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel lblMensajeCuatrimestre;
     private javax.swing.JLabel lblMensajeNombre;
     private javax.swing.JLabel lblMensajeNota;
+    private javax.swing.JLabel lblMostrarCantmaterias;
+    private javax.swing.JLabel lblMostrarPromedio;
+    private javax.swing.JLabel lblMostrarasistenciaCritica;
     private javax.swing.JLabel lblSubTitulo;
+    private javax.swing.JLabel lblcantMateriasAprobadas;
+    private javax.swing.JLabel lblcantMateriasEnCurso;
     private javax.swing.JLabel lnlTutulo;
     private javax.swing.JMenu mArchivo;
     private javax.swing.JMenu mAyuda;
