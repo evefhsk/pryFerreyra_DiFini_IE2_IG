@@ -154,11 +154,17 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         lblMensajeAño = new javax.swing.JLabel();
         btnAtras = new javax.swing.JButton();
         PantallaListarMaterias = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblTablaListar = new javax.swing.JTable();
         btnAtras5 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTablaListarNotas = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblTablaListar1 = new javax.swing.JTable();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
         PantallaReportes = new javax.swing.JPanel();
         PantallaMaterias = new javax.swing.JPanel();
         btnInscribirse = new javax.swing.JButton();
@@ -384,7 +390,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jPanelbtnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelbtnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(387, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelNavegacion, java.awt.BorderLayout.LINE_START);
@@ -536,7 +542,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(jLabel35))
                 .addGap(18, 18, 18)
                 .addComponent(PantallaGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PantallaAsistenciaLayout = new javax.swing.GroupLayout(PantallaAsistencia);
@@ -897,29 +903,37 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PantallaInscribirseLayout.createSequentialGroup()
                     .addGap(14, 14, 14)
                     .addComponent(jLabel3)
-                    .addContainerGap(584, Short.MAX_VALUE)))
+                    .addContainerGap(731, Short.MAX_VALUE)))
         );
 
         PanelContenedor.add(PantallaInscribirse, "PantallaInscribirse");
 
+        btnAtras5.setBackground(new java.awt.Color(0, 0, 153));
+        btnAtras5.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras5.setText("Volver atras");
+        btnAtras5.addActionListener(this::btnAtras5ActionPerformed);
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel20.setText("Lista de materias inscriptas");
+
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        tblTablaListar.setModel(new javax.swing.table.DefaultTableModel(
+        tblTablaListarNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Condición", "Clases dictadas", "Asistencia %", "Promedio"
+                "Código", "Materia", " Nota 1", "Nota 2", "Nota 3", "Nota 4", "Nota 5"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false
+                true, false, false, false, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -930,46 +944,110 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tblTablaListar);
+        jScrollPane2.setViewportView(tblTablaListarNotas);
+
+        tblTablaListar1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Materia", "Condición", "Clases dictadas", "Asistencia %", "Promedio"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblTablaListar1);
+
+        jLabel37.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel37.setText("Desglose analítico de las notas");
+
+        jLabel38.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel38.setText("Resumen de cursado y asistencia");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                    .addContainerGap(89, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(65, 65, 65)))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(97, 97, 97)
+                    .addComponent(jLabel38)
+                    .addContainerGap(352, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(287, Short.MAX_VALUE)
+                .addComponent(jLabel37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGap(143, 143, 143))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(70, 70, 70)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(390, Short.MAX_VALUE)))
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addComponent(jLabel38)
+                    .addContainerGap(583, Short.MAX_VALUE)))
         );
 
-        btnAtras5.setBackground(new java.awt.Color(0, 0, 153));
-        btnAtras5.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtras5.setText("Volver atras");
-        btnAtras5.addActionListener(this::btnAtras5ActionPerformed);
+        jScrollPane5.setViewportView(jPanel7);
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel20.setText("Lista de materias inscriptas");
+        jLabel36.setText("jLabel36");
 
         javax.swing.GroupLayout PantallaListarMateriasLayout = new javax.swing.GroupLayout(PantallaListarMaterias);
         PantallaListarMaterias.setLayout(PantallaListarMateriasLayout);
         PantallaListarMateriasLayout.setHorizontalGroup(
             PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaListarMateriasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAtras5, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
             .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(jLabel20)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel20))
+                    .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel36)))
+                .addContainerGap(158, Short.MAX_VALUE))
+            .addGroup(PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaListarMateriasLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)))
         );
         PantallaListarMateriasLayout.setVerticalGroup(
             PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -978,9 +1056,14 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(btnAtras5)
                 .addGap(11, 11, 11)
                 .addComponent(jLabel20)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(jLabel36)
+                .addContainerGap(605, Short.MAX_VALUE))
+            .addGroup(PantallaListarMateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PantallaListarMateriasLayout.createSequentialGroup()
+                    .addGap(118, 118, 118)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         PanelContenedor.add(PantallaListarMaterias, "PantallaListarMaterias");
@@ -993,7 +1076,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         );
         PantallaReportesLayout.setVerticalGroup(
             PantallaReportesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 774, Short.MAX_VALUE)
         );
 
         PanelContenedor.add(PantallaReportes, "PantallaReportes");
@@ -1091,7 +1174,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaMaterias, "PantallaMaterias");
@@ -1122,7 +1205,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel28)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblIconPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMostrarPromedio)
@@ -1137,7 +1220,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(lblIconPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblMostrarPromedio)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -1163,7 +1246,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel29)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblIconMateriasInscriptas, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(lblIconMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1190,7 +1273,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVerMaterias1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblIconMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -1208,7 +1291,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
         btnVerMaterias.setBackground(new java.awt.Color(0, 0, 153));
         btnVerMaterias.setForeground(new java.awt.Color(255, 255, 255));
-        btnVerMaterias.setLabel("Ver Materias");
+        btnVerMaterias.setLabel("Ver Asistencias");
         btnVerMaterias.addActionListener(this::btnVerMateriasActionPerformed);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -1216,7 +1299,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1249,7 +1332,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(jLabel31)
                     .addComponent(lblCantFaltas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMostrarasistenciaCritica, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+                .addComponent(lblMostrarasistenciaCritica, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVerMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
@@ -1278,7 +1361,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lblIconEnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1320,7 +1403,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblIconEnCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         lnlTutulo.setFont(new java.awt.Font("Inter", 1, 24)); // NOI18N
@@ -1366,7 +1449,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PanelInicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
@@ -1416,7 +1499,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         );
         PantallaPerfilLayout.setVerticalGroup(
             PantallaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 631, Short.MAX_VALUE)
+            .addGap(0, 774, Short.MAX_VALUE)
         );
 
         PanelContenedor.add(PantallaPerfil, "PantallaPerfil");
@@ -1563,12 +1646,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addGroup(PantallaBuscarMateriaLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(btnAtras3)))
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addContainerGap(656, Short.MAX_VALUE))
             .addGroup(PantallaBuscarMateriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(PantallaBuscarMateriaLayout.createSequentialGroup()
-                    .addGap(0, 96, Short.MAX_VALUE)
+                    .addGap(0, 168, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 96, Short.MAX_VALUE)))
+                    .addGap(0, 169, Short.MAX_VALUE)))
         );
 
         PanelContenedor.add(PantallaBuscarMateria, "PantallaBuscarMateria");
@@ -1650,7 +1733,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(txtMaterias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMensajeCodigoBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
@@ -1658,7 +1741,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addGroup(PantallaDarDeBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDarDeBaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(300, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaDarDeBaja, "PantallaDarDeBaja");
@@ -1688,6 +1771,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
          this.layout.show(PanelContenedor, "PantallaInicio");
+         
+         ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+         autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+         ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> datosActuales = daoInscrip.cargarInscripciones(materiasVivas);
+         
+         actualizarPanelInicio(datosActuales);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
@@ -1745,25 +1834,41 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     
     
     private void btnListarMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarMateriasActionPerformed
-        // TODO add your handling code here:
+ 
         this.layout.show(PanelContenedor, "PantallaListarMaterias");
 
         ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
-
         autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
         ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales = daoInscrip.cargarInscripciones(materiasVivas);
 
-        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
-        modelo.setRowCount(0);
+        javax.swing.table.DefaultTableModel modeloResumen = (javax.swing.table.DefaultTableModel) tblTablaListar1.getModel();
+        javax.swing.table.DefaultTableModel modeloAnalitico = (javax.swing.table.DefaultTableModel) tblTablaListarNotas.getModel();
+
+        modeloResumen.setRowCount(0);
+        modeloAnalitico.setRowCount(0);
 
         for (autogestionestudiantil.Modelos.InscripcionMateria ins : inscripcionesReales) {
             if (ins != null && ins.getMateria() != null) {
-                modelo.addRow(new Object[]{
+
+                modeloResumen.addRow(new Object[]{
+                    ins.getMateria().getCodigo(), 
                     ins.getMateria().getNombre(),
                     ins.getCondicion(),
-                    ins.getTotalClases(), 
-                    ins.getPorcentajeAsistencia(), 
+                    ins.getTotalClases(),
+                    ins.getPorcentajeAsistencia(),
                     ins.getPromedio()
+                });
+
+                Double n1 = ins.getNotas().get(0) == -1.0 ? 0.0 : ins.getNotas().get(0);
+                Double n2 = ins.getNotas().get(1) == -1.0 ? 0.0 : ins.getNotas().get(1);
+                Double n3 = ins.getNotas().get(2) == -1.0 ? 0.0 : ins.getNotas().get(2);
+                Double n4 = ins.getNotas().get(3) == -1.0 ? 0.0 : ins.getNotas().get(3);
+                Double n5 = ins.getNotas().get(4) == -1.0 ? 0.0 : ins.getNotas().get(4);
+
+                modeloAnalitico.addRow(new Object[]{
+                    ins.getMateria().getCodigo(), 
+                    ins.getMateria().getNombre(),
+                    n1, n2, n3, n4, n5
                 });
             }
         }
@@ -2016,7 +2121,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private void ActualizarTablaMaterias() {
 
         DefaultTableModel modelo
-                = (DefaultTableModel) tblTablaListar.getModel();
+                = (DefaultTableModel) tblTablaListarNotas.getModel();
 
         modelo.setRowCount(0);
 
@@ -2399,7 +2504,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 = daoInscrip.cargarInscripciones(materiasVivas);
 
         javax.swing.table.DefaultTableModel modelo
-                = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+                = (javax.swing.table.DefaultTableModel) tblTablaListarNotas.getModel();
 
         modelo.setRowCount(0);
 
@@ -2418,9 +2523,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
             }
         }
 
-        lblMostrarCantmaterias.setText(
-                "Materias inscriptas: "
-                + inscripcionesReales.size());
+        lblMostrarCantmaterias.setText(String.valueOf(inscripcionesReales.size()));
     }//GEN-LAST:event_btnVerMaterias1ActionPerformed
 
     private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
@@ -2450,7 +2553,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     }
 
     public void actualizarTablaInscripciones(java.util.ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> lista) {
-        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListar.getModel();
+        javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tblTablaListarNotas.getModel();
 
         modelo.setRowCount(0);
         if (lista == null) {
@@ -2687,6 +2790,9 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2710,6 +2816,8 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblCantFaltas;
     private javax.swing.JLabel lblIconAprobadas;
     private javax.swing.JLabel lblIconAsistenciacritica;
@@ -2749,7 +2857,8 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JTable tblTablaAsistencia;
     private javax.swing.JTable tblTablaBuscar;
     private javax.swing.JTable tblTablaCalificaciones;
-    private javax.swing.JTable tblTablaListar;
+    private javax.swing.JTable tblTablaListar1;
+    private javax.swing.JTable tblTablaListarNotas;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoBuscar;

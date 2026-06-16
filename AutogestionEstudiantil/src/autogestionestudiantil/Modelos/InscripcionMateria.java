@@ -19,16 +19,19 @@ public class InscripcionMateria implements Evaluable {
     private Materia materia;
     private int totalClases;
     private int clasesAsistidas;
-    private ArrayList<Double> notas;
+    private ArrayList<Double> notas; 
 
     public InscripcionMateria(Materia materia) {
         this.materia = materia;
         this.totalClases = 0;
         this.clasesAsistidas = 0;
         this.notas = new ArrayList<>();
+        
+        for (int i = 0; i < 5; i++) {
+            this.notas.add(-1.0);
+        }
     }
 
-    
     public Materia getMateria() {
         return materia;
     }
@@ -47,7 +50,6 @@ public class InscripcionMateria implements Evaluable {
 
     public void registrarAsistencia(boolean presente) {
         totalClases++;
-
         if (presente) {
             clasesAsistidas++;
         }
@@ -57,58 +59,66 @@ public class InscripcionMateria implements Evaluable {
         if (totalClases == 0) {
             return 0;
         }
-
         return (clasesAsistidas * 100.0) / totalClases;
     }
     
     public String getCondicion() {
         return getPorcentajeAsistencia() >= 75 ? "Regular" : "Libre";
-
     } 
     
-    public boolean agregarNota(double nota) {
+    public boolean guardarNotaEnPosicion(int posicion, double nota) {
         if (nota < 0 || nota > 10) {
             System.out.println("Nota inválida. Debe estar entre 0 y 10.");
             return false;
         }
-
-        if (notas.size() >= 5) {
-            System.out.println("No se pueden agregar más de 5 notas.");
+        if (posicion < 0 || posicion >= 5) {
+            System.out.println("Posición inválida. Debe ser entre 0 y 4.");
             return false;
         }
-
-        notas.add(nota);
+        
+        this.notas.set(posicion, nota); 
         return true;
     }
 
+    public boolean agregarNota(double nota) {
+        if (nota < 0 || nota > 10) {
+            return false;
+        }
+        for (int i = 0; i < 5; i++) {
+            if (this.notas.get(i) == -1.0) {
+                this.notas.set(i, nota);
+                return true;
+            }
+        }
+        return false;
+    }
     
     public double getPromedio() {
-        if (notas.isEmpty()) {
-            return 0;
-        }
-
         double suma = 0;
+        int cantidadNotasValidas = 0;
 
         for (double nota : notas) {
-            suma += nota;
+            if (nota != -1.0) { 
+                suma += nota;
+                cantidadNotasValidas++;
+            }
         }
 
-        return suma / notas.size();
+        if (cantidadNotasValidas == 0) {
+            return 0;
+        }
+        return suma / cantidadNotasValidas;
     }
     
     public boolean estaAprobada() {
         return getPromedio() >= 6 && getCondicion().equals("Regular");
     }
     
-    // DAO
     public String toTexto() {
-
         String notasTexto = "";
-
-        for (int i = 0; i < notas.size(); i++) {
-            notasTexto += notas.get(i);
-
-            if (i < notas.size() - 1) {
+        for (int i = 0; i < 5; i++) {
+            notasTexto += this.notas.get(i);
+            if (i < 4) {
                 notasTexto += ",";
             }
         }
@@ -120,25 +130,18 @@ public class InscripcionMateria implements Evaluable {
     }
     
     public static InscripcionMateria fromTexto(String linea, Materia materia) {
-
         String[] datos = linea.split(";");
 
-        InscripcionMateria inscripcion
-                = new InscripcionMateria(materia);
-
-        inscripcion.totalClases
-                = Integer.parseInt(datos[1]);
-
-        inscripcion.clasesAsistidas
-                = Integer.parseInt(datos[2]);
+        InscripcionMateria inscripcion = new InscripcionMateria(materia);
+        inscripcion.totalClases = Integer.parseInt(datos[1]);
+        inscripcion.clasesAsistidas = Integer.parseInt(datos[2]);
 
         if (datos.length > 3 && !datos[3].isEmpty()) {
-
             String[] notasTexto = datos[3].split(",");
-
-            for (String nota : notasTexto) {
-                inscripcion.notas.add(
-                        Double.parseDouble(nota));
+            
+            // Cargamos las posiciones que existan en el archivo de texto
+            for (int i = 0; i < notasTexto.length && i < 5; i++) {
+                inscripcion.notas.set(i, Double.parseDouble(notasTexto[i]));
             }
         }
 
