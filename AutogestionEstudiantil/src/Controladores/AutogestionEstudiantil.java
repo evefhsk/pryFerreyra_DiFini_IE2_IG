@@ -73,6 +73,10 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> datosInicio = daoInscrip.cargarInscripciones(materiasVivas);
         
         actualizarPanelInicio(datosInicio);
+        
+        PantallaGuardarAsistencia1.setVisible(false); // Ocultamos el panel de carga de notas
+        cmbNumNota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nota 1", "Nota 2", "Nota 3", "Nota 4", "Nota 5" }));
+        spnCalificaciones.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
     }
 
     /**
@@ -115,22 +119,23 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         btnAtras6 = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         PantallaCalificaciones = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        PantallaGuardarAsistencia1 = new javax.swing.JPanel();
         btnRegsitrarCalificacion = new java.awt.Button();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        txtCodigoNota = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        btnCancelarNota = new javax.swing.JButton();
-        lblMensajeCodigoNota = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        spnNota = new javax.swing.JSpinner();
+        btnCancelarCalificacion = new javax.swing.JButton();
         lblMensajeNota = new javax.swing.JLabel();
-        btnAtras4 = new javax.swing.JButton();
-        PanelPromedioActualizado = new javax.swing.JPanel();
+        cmbNumNota = new javax.swing.JComboBox<>();
+        spnCalificaciones = new javax.swing.JSpinner();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        btnSeleccionar1 = new javax.swing.JButton();
+        jLabel24 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblTablaCalificaciones = new javax.swing.JTable();
+        tblTablaListarNotas1 = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
+        btnAtras7 = new javax.swing.JButton();
         PantallaInscribirse = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -507,7 +512,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -560,168 +565,187 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
         PantallaCalificaciones.setPreferredSize(new java.awt.Dimension(670, 631));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel21.setText("Registrar calificaciones de una materia");
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setForeground(new java.awt.Color(255, 255, 255));
 
         btnRegsitrarCalificacion.setBackground(new java.awt.Color(0, 0, 153));
         btnRegsitrarCalificacion.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegsitrarCalificacion.setLabel("Regsitrar Calificacion");
+        btnRegsitrarCalificacion.setLabel("Registrar asistencia");
         btnRegsitrarCalificacion.addActionListener(this::btnRegsitrarCalificacionActionPerformed);
 
-        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel24.setText("Ingrese la nota de la materia: ");
+        btnCancelarCalificacion.setBackground(new java.awt.Color(153, 153, 153));
+        btnCancelarCalificacion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelarCalificacion.setText("Cancelar");
+        btnCancelarCalificacion.addActionListener(this::btnCancelarCalificacionActionPerformed);
 
-        jLabel25.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel25.setText("*");
+        cmbNumNota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel26.setText("Ingrese el código de la materia: ");
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Nota");
 
-        btnCancelarNota.setBackground(new java.awt.Color(153, 153, 153));
-        btnCancelarNota.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelarNota.setText("Cancelar");
-        btnCancelarNota.addActionListener(this::btnCancelarNotaActionPerformed);
+        jLabel26.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel26.setText("*");
 
-        jLabel27.setBackground(new java.awt.Color(255, 0, 51));
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel27.setText("*");
+        jLabel27.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Calificaciones");
 
-        spnNota.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        jLabel39.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel39.setText("*");
 
-        btnAtras4.setBackground(new java.awt.Color(0, 0, 153));
-        btnAtras4.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtras4.setText("Volver atras");
-        btnAtras4.addActionListener(this::btnAtras4ActionPerformed);
+        javax.swing.GroupLayout PantallaGuardarAsistencia1Layout = new javax.swing.GroupLayout(PantallaGuardarAsistencia1);
+        PantallaGuardarAsistencia1.setLayout(PantallaGuardarAsistencia1Layout);
+        PantallaGuardarAsistencia1Layout.setHorizontalGroup(
+            PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PantallaGuardarAsistencia1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PantallaGuardarAsistencia1Layout.createSequentialGroup()
+                        .addComponent(lblMensajeNota, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(37, Short.MAX_VALUE))
+                    .addGroup(PantallaGuardarAsistencia1Layout.createSequentialGroup()
+                        .addComponent(btnCancelarCalificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegsitrarCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
+            .addGroup(PantallaGuardarAsistencia1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbNumNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spnCalificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+        );
+        PantallaGuardarAsistencia1Layout.setVerticalGroup(
+            PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaGuardarAsistencia1Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbNumNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spnCalificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27)
+                        .addComponent(jLabel39))
+                    .addGroup(PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(jLabel26)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMensajeNota, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PantallaGuardarAsistencia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegsitrarCalificacion, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(btnCancelarCalificacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
 
-        tblTablaCalificaciones.setModel(new javax.swing.table.DefaultTableModel(
+        btnSeleccionar1.setBackground(new java.awt.Color(204, 204, 204));
+        btnSeleccionar1.setText("Seleccionar");
+        btnSeleccionar1.addActionListener(this::btnSeleccionar1ActionPerformed);
+
+        jLabel24.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Selecciona la materia que quiera guardar su nota");
+
+        tblTablaListarNotas1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Condición", "Asistencia %", "Promedio"
+                "Código", "Materia", " Nota 1", "Nota 2", "Nota 3", "Nota 4", "Nota 5"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, true, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane3.setViewportView(tblTablaCalificaciones);
+        jScrollPane3.setViewportView(tblTablaListarNotas1);
 
-        javax.swing.GroupLayout PanelPromedioActualizadoLayout = new javax.swing.GroupLayout(PanelPromedioActualizado);
-        PanelPromedioActualizado.setLayout(PanelPromedioActualizadoLayout);
-        PanelPromedioActualizadoLayout.setHorizontalGroup(
-            PanelPromedioActualizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPromedioActualizadoLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnSeleccionar1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(PantallaGuardarAsistencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66))
         );
-        PanelPromedioActualizadoLayout.setVerticalGroup(
-            PanelPromedioActualizadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPromedioActualizadoLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 235, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(btnCancelarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRegsitrarCalificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMensajeCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMensajeNota, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(jLabel24)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel25)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(spnNota, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(395, 395, 395)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(140, 140, 140))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnAtras4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addComponent(PanelPromedioActualizado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(jLabel26)
-                    .addContainerGap(257, Short.MAX_VALUE)))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnAtras4)
-                .addGap(15, 15, 15)
-                .addComponent(jLabel21)
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel24)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblMensajeCodigoNota, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(spnNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel25))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensajeNota, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegsitrarCalificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelarNota, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(38, 38, 38)
-                .addComponent(PanelPromedioActualizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel8Layout.createSequentialGroup()
-                    .addGap(109, 109, 109)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(480, Short.MAX_VALUE)))
+                .addComponent(btnSeleccionar1)
+                .addGap(18, 18, 18)
+                .addComponent(PantallaGuardarAsistencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel25.setText("Registrar asistencia de una materia");
+
+        btnAtras7.setBackground(new java.awt.Color(0, 0, 153));
+        btnAtras7.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtras7.setText("Volver atras");
+        btnAtras7.addActionListener(this::btnAtras7ActionPerformed);
 
         javax.swing.GroupLayout PantallaCalificacionesLayout = new javax.swing.GroupLayout(PantallaCalificaciones);
         PantallaCalificaciones.setLayout(PantallaCalificacionesLayout);
         PantallaCalificacionesLayout.setHorizontalGroup(
             PantallaCalificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PantallaCalificacionesLayout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaCalificacionesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnAtras7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+            .addGroup(PantallaCalificacionesLayout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PantallaCalificacionesLayout.setVerticalGroup(
             PantallaCalificacionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PantallaCalificacionesLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(btnAtras7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         PanelContenedor.add(PantallaCalificaciones, "PantallaCalificaciones");
@@ -1174,7 +1198,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                     .addComponent(btnRegistrarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnListarMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         PanelContenedor.add(PantallaMaterias, "PantallaMaterias");
@@ -1794,8 +1818,32 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInscribirseActionPerformed
 
     private void btnRegistrarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarNotaActionPerformed
-        // TODO add your handling code here:
+ 
         this.layout.show(PanelContenedor, "PantallaCalificaciones");
+        PantallaGuardarAsistencia1.setVisible(false); 
+        
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+        autogestionestudiantil.DAO.InscripcionMateriaDAO daoInscrip = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> inscripcionesReales = daoInscrip.cargarInscripciones(materiasVivas);
+
+        javax.swing.table.DefaultTableModel modeloCalificaciones = (javax.swing.table.DefaultTableModel) tblTablaListarNotas1.getModel();
+        modeloCalificaciones.setRowCount(0);
+
+        for (autogestionestudiantil.Modelos.InscripcionMateria ins : inscripcionesReales) {
+            if (ins != null && ins.getMateria() != null) {
+                Double n1 = ins.getNotas().get(0) == -1.0 ? 0.0 : ins.getNotas().get(0);
+                Double n2 = ins.getNotas().get(1) == -1.0 ? 0.0 : ins.getNotas().get(1);
+                Double n3 = ins.getNotas().get(2) == -1.0 ? 0.0 : ins.getNotas().get(2);
+                Double n4 = ins.getNotas().get(3) == -1.0 ? 0.0 : ins.getNotas().get(3);
+                Double n5 = ins.getNotas().get(4) == -1.0 ? 0.0 : ins.getNotas().get(4);
+
+                modeloCalificaciones.addRow(new Object[]{
+                    ins.getMateria().getCodigo(),
+                    ins.getMateria().getNombre(),
+                    n1, n2, n3, n4, n5
+                });
+            }
+        }
     }//GEN-LAST:event_btnRegistrarNotaActionPerformed
 
     private void btnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsistenciaActionPerformed
@@ -2268,102 +2316,8 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         this.layout.show(PanelContenedor, "PantallaMaterias"); 
     }//GEN-LAST:event_btnAtras3ActionPerformed
 
-    private void btnRegsitrarCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegsitrarCalificacionActionPerformed
-        // TODO add your handling code here:
-        lblMensajeCodigoNota.setText("");
-        lblMensajeNota.setText("");
-
-        String codigo = txtCodigoNota.getText().trim();
-
-        double nota = Double.parseDouble(
-                spnNota.getValue().toString());
-
-        boolean hayErrores = false;
-
-        // VALIDAR CÓDIGO
-        if (codigo.isEmpty()) {
-
-            lblMensajeCodigoNota.setText(
-                    "Debe ingresar un código.");
-
-            hayErrores = true;
-        }
-
-        // VALIDAR NOTA
-        if (nota < 0 || nota > 10) {
-
-            lblMensajeNota.setText(
-                    "La nota debe estar entre 1 y 10.");
-
-            hayErrores = true;
-        }
-
-        if (hayErrores) {
-            return;
-        }
-
-        boolean registrada
-                = controladorInscripciones.registrarNota(
-                        codigo,
-                        nota);
-
-        if (!registrada) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "No se pudo registrar la nota.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-
-            return;
-        }
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Calificación registrada correctamente.",
-                "Éxito",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        txtCodigoNota.setText("");
-        spnNota.setValue(1);
-
-        // Mostrar panel actualizado
-        this.layout.show(
-                PanelContenedor,
-                "PanelPromedioActualizado");
-
-        actualizarTablaCalificaciones();
-    }//GEN-LAST:event_btnRegsitrarCalificacionActionPerformed
-
-    private void actualizarTablaCalificaciones() {
-
-        DefaultTableModel modelo
-                = (DefaultTableModel) tblTablaCalificaciones.getModel();
-
-        modelo.setRowCount(0);
-
-        for (autogestionestudiantil.Modelos.InscripcionMateria ins
-                : controladorInscripciones.getInscripciones()) {
-
-            if (ins != null
-                    && ins.getMateria() != null) {
-
-                modelo.addRow(new Object[]{
-                    ins.getMateria().getNombre(),
-                    ins.getCondicion(),
-                    ins.getPorcentajeAsistencia(),
-                    ins.getPromedio()
-
-                });
-            }
-        }
-    }
+   
     
-    private void btnAtras4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras4ActionPerformed
-        // TODO add your handling code here:
-        this.layout.show(PanelContenedor, "PantallaMaterias"); 
-    }//GEN-LAST:event_btnAtras4ActionPerformed
-
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         // TODO add your handling code here:
         int fila = tblTablaAsistencia.getSelectedRow();
@@ -2526,21 +2480,64 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         lblMostrarCantmaterias.setText(String.valueOf(inscripcionesReales.size()));
     }//GEN-LAST:event_btnVerMaterias1ActionPerformed
 
-    private void btnCancelarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarNotaActionPerformed
-        // TODO add your handling code here:
-        txtCodigoNota.setText("");
-
-        spnNota.setValue(1);
-
-        lblMensajeCodigoNota.setText("");
-        lblMensajeNota.setText("");
-    }//GEN-LAST:event_btnCancelarNotaActionPerformed
-
     private void btnCancelarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAsistenciaActionPerformed
         // TODO add your handling code here:
         btgAsistencia.clearSelection();
         lblMensajeAsistencia.setText("");
     }//GEN-LAST:event_btnCancelarAsistenciaActionPerformed
+
+    private void btnAtras7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtras7ActionPerformed
+
+    private void btnSeleccionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionar1ActionPerformed
+        // TODO add your handling code here:
+        
+        int fila = tblTablaListarNotas1.getSelectedRow();
+
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una materia de la tabla.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        PantallaGuardarAsistencia1.setVisible(true);
+    }//GEN-LAST:event_btnSeleccionar1ActionPerformed
+
+    private void btnCancelarCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCalificacionActionPerformed
+        // TODO add your handling code here:
+        PantallaGuardarAsistencia1.setVisible(false);
+        lblMensajeNota.setText("");
+    }//GEN-LAST:event_btnCancelarCalificacionActionPerformed
+
+    private void btnRegsitrarCalificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegsitrarCalificacionActionPerformed
+        // TODO add your handling code here:
+        
+        lblMensajeNota.setText("");
+        int filaSeleccionada = tblTablaListarNotas1.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            return;
+        }
+
+        ArrayList<Materia> materiasVivas = this.controller.listarMaterias();
+        autogestionestudiantil.DAO.InscripcionMateriaDAO dao = new autogestionestudiantil.DAO.InscripcionMateriaDAO();
+        ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> listaFresca = dao.cargarInscripciones(materiasVivas);
+
+        autogestionestudiantil.Modelos.InscripcionMateria inscripcion = listaFresca.get(filaSeleccionada);
+
+        int instancia = cmbNumNota.getSelectedIndex(); 
+        double notaCargada = Double.parseDouble(spnCalificaciones.getValue().toString());
+
+        inscripcion.guardarNotaEnPosicion(instancia, notaCargada);
+
+        dao.guardarInscripciones(listaFresca);
+
+        JOptionPane.showMessageDialog(this, "Calificación guardada con éxito para " + inscripcion.getMateria().getNombre(), "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        PantallaGuardarAsistencia1.setVisible(false); 
+        
+        btnRegistrarNotaActionPerformed(null);
+    }//GEN-LAST:event_btnRegsitrarCalificacionActionPerformed
 
     //Inscripcion Controller
     
@@ -2718,12 +2715,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JPanel PanelInicio;
     private javax.swing.JPanel PanelInicio1;
     private javax.swing.JPanel PanelNavegacion;
-    private javax.swing.JPanel PanelPromedioActualizado;
     private javax.swing.JPanel PantallaAsistencia;
     private javax.swing.JPanel PantallaBuscarMateria;
     private javax.swing.JPanel PantallaCalificaciones;
     private javax.swing.JPanel PantallaDarDeBaja;
     private javax.swing.JPanel PantallaGuardarAsistencia;
+    private javax.swing.JPanel PantallaGuardarAsistencia1;
     private javax.swing.JPanel PantallaInicio;
     private javax.swing.JPanel PantallaInscribirse;
     private javax.swing.JPanel PantallaListarMaterias;
@@ -2734,9 +2731,9 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnAtras2;
     private javax.swing.JButton btnAtras3;
-    private javax.swing.JButton btnAtras4;
     private javax.swing.JButton btnAtras5;
     private javax.swing.JButton btnAtras6;
+    private javax.swing.JButton btnAtras7;
     private javax.swing.JButton btnBuscarMateria;
     private java.awt.Button btnBuscarMateriaCodigo;
     private java.awt.Button btnBuscarMateriaNombre;
@@ -2744,7 +2741,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private java.awt.Button btnCancelar1;
     private javax.swing.JButton btnCancelarAsistencia;
     private javax.swing.JButton btnCancelarBusqueda;
-    private javax.swing.JButton btnCancelarNota;
+    private javax.swing.JButton btnCancelarCalificacion;
     private javax.swing.JButton btnDarDeBaja;
     private java.awt.Button btnDarDeBaja1;
     private javax.swing.JButton btnInicio;
@@ -2759,8 +2756,10 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private java.awt.Button btnRegsitrarCalificacion;
     private javax.swing.JButton btnReportes;
     private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JButton btnSeleccionar1;
     private java.awt.Button btnVerMaterias;
     private java.awt.Button btnVerMaterias1;
+    private javax.swing.JComboBox<String> cmbNumNota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2793,6 +2792,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2800,13 +2800,13 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelbtnInicio;
     private javax.swing.JPanel jPanelbtnMaterias;
@@ -2836,7 +2836,6 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel lblMensajeBuscarNombre;
     private javax.swing.JLabel lblMensajeCodigo;
     private javax.swing.JLabel lblMensajeCodigoBaja;
-    private javax.swing.JLabel lblMensajeCodigoNota;
     private javax.swing.JLabel lblMensajeCuatrimestre;
     private javax.swing.JLabel lblMensajeNombre;
     private javax.swing.JLabel lblMensajeNota;
@@ -2853,16 +2852,15 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JMenu mReportes;
     private javax.swing.JRadioButton rdbAusente;
     private javax.swing.JRadioButton rdbPresente;
-    private javax.swing.JSpinner spnNota;
+    private javax.swing.JSpinner spnCalificaciones;
     private javax.swing.JTable tblTablaAsistencia;
     private javax.swing.JTable tblTablaBuscar;
-    private javax.swing.JTable tblTablaCalificaciones;
     private javax.swing.JTable tblTablaListar1;
     private javax.swing.JTable tblTablaListarNotas;
+    private javax.swing.JTable tblTablaListarNotas1;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCodigoBuscar;
-    private javax.swing.JTextField txtCodigoNota;
     private javax.swing.JTextField txtCuatrimestre;
     private javax.swing.JTextField txtMaterias;
     private javax.swing.JTextField txtNombre;
