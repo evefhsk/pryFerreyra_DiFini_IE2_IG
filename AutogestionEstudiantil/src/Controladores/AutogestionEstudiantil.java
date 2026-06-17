@@ -1622,14 +1622,11 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         PantallaPerfil.setLayout(PantallaPerfilLayout);
         PantallaPerfilLayout.setHorizontalGroup(
             PantallaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 681, Short.MAX_VALUE)
         );
         PantallaPerfilLayout.setVerticalGroup(
             PantallaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PantallaPerfilLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 623, Short.MAX_VALUE)
         );
 
         PanelContenedor.add(PantallaPerfil, "PantallaPerfil");
@@ -2944,7 +2941,6 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
