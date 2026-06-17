@@ -289,7 +289,7 @@ Ramas principales:
 |----------|---------|
 | Repositorio GitHub | https://github.com/evefhsk/pryFerreyra_DiFini_IE2_IG.git |
 | Diseño Figma | https://www.figma.com/proto/dkg1D2aedG48Bfvzi2KoR5/Dise%C3%B1o-de-Autogesti%C3%B3n-Estudiantil?node-id=158-211&t=X8ZrB4lmrzKspytE-1  |
-| Video explicativo |  |
+| Video explicativo | https://drive.google.com/drive/folders/1gon1LSuyQcKmazN0MTDPVYw2GweetsU8  |
 | Conversaciones IA | https://docs.google.com/document/d/1AImyo5g_JzDFDcJhzfkO8-3BBhia3rdTO1botwDrLG0/edit?usp=sharing |
 | Prueba y error | https://docs.google.com/document/d/1AImyo5g_JzDFDcJhzfkO8-3BBhia3rdTO1botwDrLG0/edit?usp=sharing |
 | Organización |https://docs.google.com/document/d/1EHddp_ELIB-SvB9dtQ8pyK6g7zr67QqlOk3FhPDF05E/edit?usp=sharing |
