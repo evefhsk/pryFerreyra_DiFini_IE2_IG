@@ -196,12 +196,10 @@ https://www.figma.com/proto/dkg1D2aedG48Bfvzi2KoR5/Dise%C3%B1o-de-Autogesti%C3%B
 
 ## Bonus Implementados
 
-*(Completar según lo implementado por el grupo)*
-
-- [ ] Prototipo navegable en Figma.
-- [ ] Búsqueda de materias por código o nombre.
-- [ ] Reportes avanzados.
-- [ ] Estadísticas académicas.
+- Prototipo navegable en Figma.
+- Búsqueda de materias por código o nombre.
+- Reportes avanzados.
+- Estadísticas académicas.
 
 ---
 
