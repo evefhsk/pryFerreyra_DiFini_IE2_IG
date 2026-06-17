@@ -182,4 +182,31 @@ public class InscripcionesController {
 
         return agregada;
     }
+    
+    public String registrarAsistencia(int indice, boolean presente) {
+
+        if (indice < 0 || indice >= inscripciones.size()) {
+            return "ERROR";
+        }
+
+        InscripcionMateria inscripcion = inscripciones.get(indice);
+
+        inscripcion.registrarClase(presente);
+
+        inscripcionDao.guardarInscripciones(inscripciones);
+        vista.actualizarTablaInscripciones(inscripciones); 
+
+        double porcentaje = inscripcion.getPorcentajeAsistencia();
+
+        if (porcentaje < 75) {
+
+            return "ALERTA_CRITICA";
+
+        } else if (porcentaje <= 85) {
+
+            return "RIESGO";
+        }
+
+        return "OK";
+    }
 }
