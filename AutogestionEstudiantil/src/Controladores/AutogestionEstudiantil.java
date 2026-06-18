@@ -2242,21 +2242,10 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("Por código");
 
-        txtCodigoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCodigoBuscarKeyPressed(evt);
-            }
-        });
-
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Por nombre");
 
         txtNombreBuscar.addActionListener(this::txtNombreBuscarActionPerformed);
-        txtNombreBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombreBuscarKeyPressed(evt);
-            }
-        });
 
         btnBuscarMateriaCodigo.setBackground(new java.awt.Color(0, 0, 153));
         btnBuscarMateriaCodigo.setForeground(new java.awt.Color(255, 255, 255));
@@ -3010,57 +2999,75 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         }
     }
     
-    // BUSCAR POR NOMBRE
-    private void ActualizarTablaMaterias(
-            ArrayList<autogestionestudiantil.Modelos.InscripcionMateria> lista) {
+  
+    //Listar por nombre
+    private void ActualizarTablaMaterias(ArrayList<Materia> materias) {
 
         DefaultTableModel modelo
                 = (DefaultTableModel) tblTablaBuscar.getModel();
 
         modelo.setRowCount(0);
 
-        for (autogestionestudiantil.Modelos.InscripcionMateria ins : lista) {
-
-            if (ins != null && ins.getMateria() != null) {
-
-                modelo.addRow(new Object[]{
-                    ins.getMateria().getNombre(),
-                    ins.getCondicion(),
-                    ins.getPorcentajeAsistencia(),
-                    ins.getPromedio()
-                });
-            }
-        }
-    }
-    
-    // BUSCAR POR CÓDIGO
-    private void ActualizarTablaMaterias(
-            autogestionestudiantil.Modelos.InscripcionMateria ins) {
-
-        DefaultTableModel modelo
-                = (DefaultTableModel) tblTablaBuscar.getModel();
-
-        modelo.setRowCount(0);
-
-        if (ins != null && ins.getMateria() != null) {
+        for (Materia materia : materias) {
 
             modelo.addRow(new Object[]{
-                ins.getMateria().getNombre(),
-                ins.getCondicion(),
-                ins.getPorcentajeAsistencia(),
-                ins.getPromedio()
+                materia.getNombre(),
+                materia.getCodigo(),
+                materia.getCuatrimestre(),
+                materia.getAnio()
             });
         }
     }
     
+    //Lista por codigo
+    private void ActualizarTablaMaterias(Materia materia) {
+
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblTablaBuscar.getModel();
+
+        modelo.setRowCount(0);
+
+        modelo.addRow(new Object[]{
+            materia.getNombre(),
+            materia.getCodigo(),
+            materia.getCuatrimestre(),
+            materia.getAnio()
+        });
+    }
+    
     private void btnBuscarMateriaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMateriaCodigoActionPerformed
         // TODO add your handling code here:
-        filtrarBusquedaMateria(txtNombreBuscar.getText().trim());
+       lblMensajeBuscarCodigo.setText("");
+
+        String codigo = txtCodigoBuscar.getText().trim();
+
+        if (codigo.isEmpty()) {
+
+            lblMensajeBuscarCodigo.setText(
+                    "Debe ingresar un código.");
+
+            return;
+        }
+
+        // Bloquea la búsqueda por nombre
+        btnBuscarMateriaNombre.setEnabled(false);
+
+        Materia materia = controller.buscarPorCodigo(codigo);
+
+        if (materia != null) {
+
+            ActualizarTablaMaterias(materia);
+
+        } else {
+
+            lblMensajeBuscarCodigo.setText(
+                    "No existe una materia con ese código.");
+        }
     }//GEN-LAST:event_btnBuscarMateriaCodigoActionPerformed
 
     private void btnCancelarBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarBusquedaActionPerformed
         // TODO add your handling code here:
-        txtCodigoBuscar.setText("");
+         txtCodigoBuscar.setText("");
         txtNombreBuscar.setText("");
 
         lblMensajeBuscarCodigo.setText("");
@@ -3069,13 +3076,42 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         btnBuscarMateriaCodigo.setEnabled(true);
         btnBuscarMateriaNombre.setEnabled(true);
 
-        DefaultTableModel modelo = (DefaultTableModel) tblTablaBuscar.getModel();
+        //Limpia la tabla
+        DefaultTableModel modelo
+                = (DefaultTableModel) tblTablaBuscar.getModel();
+
         modelo.setRowCount(0);
     }//GEN-LAST:event_btnCancelarBusquedaActionPerformed
 
     private void btnBuscarMateriaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarMateriaNombreActionPerformed
         // TODO add your handling code here:
-       filtrarBusquedaMateria(txtCodigoBuscar.getText().trim());
+        lblMensajeBuscarNombre.setText("");
+
+        String nombre = txtNombreBuscar.getText().trim();
+
+        if (nombre.isEmpty()) {
+
+            lblMensajeBuscarNombre.setText(
+                    "Debe ingresar un nombre.");
+
+            return;
+        }
+
+        // Bloquear búsqueda por código
+        btnBuscarMateriaCodigo.setEnabled(false);
+
+        ArrayList<Materia> resultados
+                = controller.buscarPorNombre(nombre);
+
+        if (resultados.isEmpty()) {
+
+            lblMensajeBuscarNombre.setText(
+                    "No se encontraron materias.");
+
+            return;
+        }
+
+        ActualizarTablaMaterias(resultados);
     }//GEN-LAST:event_btnBuscarMateriaNombreActionPerformed
 
    
@@ -3374,34 +3410,6 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private void txtNombreBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreBuscarActionPerformed
-
-    private void txtNombreBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreBuscarKeyPressed
-        // TODO add your handling code here:
-        String texto = txtNombreBuscar.getText().trim();
-        
-        if (!texto.isEmpty()) {
-            txtCodigoBuscar.setText(""); 
-            btnBuscarMateriaCodigo.setEnabled(false); 
-        } else {
-            btnBuscarMateriaCodigo.setEnabled(true);
-        }
-        
-        filtrarBusquedaMateria(texto);
-    }//GEN-LAST:event_txtNombreBuscarKeyPressed
-
-    private void txtCodigoBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBuscarKeyPressed
-        // TODO add your handling code here:
-        String texto = txtCodigoBuscar.getText().trim();
-        
-        if (!texto.isEmpty()) {
-            txtNombreBuscar.setText(""); 
-            btnBuscarMateriaNombre.setEnabled(false);
-        } else {
-            btnBuscarMateriaNombre.setEnabled(true);
-        }
-        
-        filtrarBusquedaMateria(texto);
-    }//GEN-LAST:event_txtCodigoBuscarKeyPressed
 
     private void btnAtras4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtras4ActionPerformed
         // TODO add your handling code here:
@@ -3751,42 +3759,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         lblSubTitulo.setText("Carrera: Analista de Sistemas  |  Fecha de acceso: " + fechaTexto);
     }
     
-    private void filtrarBusquedaMateria(String textoBusqueda) {
-        DefaultTableModel modelo = (DefaultTableModel) tblTablaBuscar.getModel();
-        modelo.setRowCount(0); 
-
-        if (textoBusqueda.isEmpty()) {
-            return; 
-        }
-
-        int coincidenciasEncontradas = 0;
-        String busqueda = textoBusqueda.toLowerCase();
-
-        for (autogestionestudiantil.Modelos.InscripcionMateria ins : controladorInscripciones.getInscripciones()) {
-            if (ins != null && ins.getMateria() != null) {
-                
-                String nombre = ins.getMateria().getNombre().toLowerCase();
-                String codigo = ins.getMateria().getCodigo().toLowerCase();
-
-                if (nombre.contains(busqueda) || codigo.contains(busqueda)) {
-                    modelo.addRow(new Object[]{
-                        ins.getMateria().getCodigo(),
-                        ins.getMateria().getNombre(),
-                        ins.getCondicion(),
-                        ins.getPorcentajeAsistencia(),
-                        ins.getPromedio()
-                    });
-                    coincidenciasEncontradas++;
-                }
-            }
-        }
-
-        if (coincidenciasEncontradas == 0) {
-            modelo.addRow(new Object[]{
-                "-", "No se encontraron coincidencias...", "-", 0.0, 0
-            });
-        }
-    }
+    
     
     //Bonus reporte:
     

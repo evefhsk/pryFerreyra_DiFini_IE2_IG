@@ -3690,9 +3690,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCodigoBuscar">
-                  <Events>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCodigoBuscarKeyPressed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
@@ -3705,7 +3702,6 @@
                 <Component class="javax.swing.JTextField" name="txtNombreBuscar">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreBuscarActionPerformed"/>
-                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreBuscarKeyPressed"/>
                   </Events>
                 </Component>
                 <Component class="java.awt.Button" name="btnBuscarMateriaCodigo">
