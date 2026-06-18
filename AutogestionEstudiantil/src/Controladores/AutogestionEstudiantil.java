@@ -37,8 +37,9 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     
     public AutogestionEstudiantil() {
         
-        //Promt: Como colocar imagenes en java swing
+      
         initComponents();
+        this.setLocationRelativeTo(null);
         
         this.controladorInscripciones = new Controladores.InscripcionesController(this);
         
@@ -53,7 +54,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         // Asignar al JLabel
         lblPerfilUsuario.setIcon(new ImageIcon(imagen));
 
-        
+          //Promt: Como colocar imagenes en java swing
         
         colocarIcono(lblIconoPerfil, "/imgs/usuario.png");
         colocarIcono(lblIconoInicio, "/imgs/NInicio.png");
@@ -925,9 +926,9 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel3)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1084,16 +1085,21 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
             PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PantallaInscribirseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(208, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaInscribirseLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGroup(PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PantallaInscribirseLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(208, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaInscribirseLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaInscribirseLayout.createSequentialGroup()
+                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PantallaInscribirseLayout.createSequentialGroup()
+                                .addGroup(PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(141, 141, 141))))))
         );
         PantallaInscribirseLayout.setVerticalGroup(
             PantallaInscribirseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3450,7 +3456,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         String manualAyuda = "<html>"
                         + "<body style='font-family: Arial, sans-serif; font-size: 12px; width: 420px; color: #333;'>"
                         + "  <h2 style='color: #0A1450; margin-bottom: 2px;'>MANUAL DE USO RÁPIDO</h2>"
-                        + "  <p style='font-size: 10px; color: #666; margin-top: 0;'>Autogestión Estudiantil v1.0</p>"
+                        + "  <p style='font-size: 10px; color: #666; margin-top: 0;'>Autogestión Estudiantil v2.0</p>"
                         + "  <hr style='border: 0; border-top: 1px solid #CCC; margin-bottom: 12px;'>"
                         
                         + "  <p><b> 1. Registro y Carga de Materias</b><br>"
