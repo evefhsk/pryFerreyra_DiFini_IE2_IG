@@ -109,14 +109,12 @@ public class InscripcionMateriaDAO {
         
         while ((linea = br.readLine()) != null) {
             if (linea.trim().isEmpty()) {
-                continue; // Saltamos líneas vacías por seguridad
+                continue; 
             }
-            
-            // 1. Desarmamos la línea (Estructura: codigo;totalClases;clasesAsistidas;notas1,2,3...)
+
             String[] datos = linea.split(";");
             String codigoMateria = datos[0];
-            
-            // 2. Buscamos a qué materia real corresponde ese código
+
             Materia materiaEncontrada = null;
             for (Materia m : materias) {
                 if (m != null && m.getCodigo().equalsIgnoreCase(codigoMateria)) {
@@ -124,16 +122,11 @@ public class InscripcionMateriaDAO {
                     break;
                 }
             }
-            
-            // 3. Si la materia existe en el plan de estudio, reconstruimos su inscripción
+
             if (materiaEncontrada != null) {
                 InscripcionMateria inscripcion = new InscripcionMateria(materiaEncontrada);
-                
-                // Mapeamos los datos numéricos de asistencias
-                // Usamos los mismos atributos que ya tenés asignados en tu método fromTexto
-                inscripcion.registrarClase(false); // Truco por si necesitas inicializar, pero tu fromTexto original asigna directo:
-                
-                // Como ya tenías resuelto el parseo en tu clase, replicamos tu estructura original de lectura:
+                inscripcion.registrarClase(false); 
+            
                 inscripcion = InscripcionMateria.fromTexto(linea, materiaEncontrada);
                 
                 listaCargada.add(inscripcion);
