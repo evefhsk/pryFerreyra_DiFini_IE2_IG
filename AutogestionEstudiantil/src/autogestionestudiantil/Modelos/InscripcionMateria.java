@@ -13,7 +13,7 @@ import autogestionestudiantil.Modelos.Materia;
 import java.util.ArrayList;
 
 
-public class InscripcionMateria implements Evaluable {
+public class InscripcionMateria implements Evaluable, Rankeable {
 
    
     private Materia materia;
@@ -111,7 +111,7 @@ public class InscripcionMateria implements Evaluable {
     }
     
     public boolean estaAprobada() {
-        return getPromedio() >= 6 && getCondicion().equals("Regular");
+        return getPromedio() >= 6 && getCondicion().equalsIgnoreCase("Regular");
     }
     
     public String toTexto() {
@@ -153,6 +153,17 @@ public class InscripcionMateria implements Evaluable {
         if (asistio) {
             this.clasesAsistidas++;
         }
+    }
+    
+    @Override
+    public double getPuntajeRanking() {
+        double promedio = getPromedio();
+        double asistencia = getPorcentajeAsistencia();
+
+
+        double asistenciaNormalizada = asistencia / 10.0;
+
+        return (promedio * 0.6) + (asistenciaNormalizada * 0.4);
     }
     
 }

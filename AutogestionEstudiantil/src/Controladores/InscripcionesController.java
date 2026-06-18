@@ -209,4 +209,99 @@ public class InscripcionesController {
 
         return "OK";
     }
+    
+    //BONUS 
+    
+    public int buscarIndiceFilaMateria(String criterio) {
+        if (criterio == null || criterio.trim().isEmpty()) {
+            return -1;
+        }
+        
+        String busqueda = criterio.trim().toLowerCase();
+        
+        for (int i = 0; i < inscripciones.size(); i++) {
+            InscripcionMateria ins = inscripciones.get(i);
+            if (ins != null && ins.getMateria() != null) {
+                String codigo = ins.getMateria().getCodigo().toLowerCase();
+                String nombre = ins.getMateria().getNombre().toLowerCase();
+                
+                if (codigo.contains(busqueda) || nombre.contains(busqueda)) {
+                    return i; 
+                }
+            }
+        }
+        return -1; 
+    }
+    
+    public ArrayList<InscripcionMateria> obtenerMateriasEnRiesgoOrdenadas() {
+        ArrayList<InscripcionMateria> enRiesgo = new ArrayList<>();
+
+        for (InscripcionMateria ins : inscripciones) {
+            if (ins != null) {
+                double asis = ins.getPorcentajeAsistencia();
+                if (asis < 80.0) {
+                    enRiesgo.add(ins);
+                }
+            }
+        }
+
+        int n = enRiesgo.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (enRiesgo.get(j).getPorcentajeAsistencia() > enRiesgo.get(j + 1).getPorcentajeAsistencia()) {
+                    InscripcionMateria aux = enRiesgo.get(j);
+                    enRiesgo.set(j, enRiesgo.get(j + 1));
+                    enRiesgo.set(j + 1, aux);
+                }
+            }
+        }
+        
+        return enRiesgo;
+    }
+    
+    public double[] calcularMetricasAprobadas() {
+        double max = 0.0; 
+        double min = 10.0; 
+        double sumaNotas = 0.0;
+        int aprobadasContador = 0;
+
+        for (InscripcionMateria ins : inscripciones) {
+            if (ins != null && ins.getPromedio() > 0.0) { 
+                double promedioMateria = ins.getPromedio();
+
+                if (aprobadasContador == 0) {
+                    max = promedioMateria;
+                    min = promedioMateria;
+                } else {
+                    if (promedioMateria > max) max = promedioMateria;
+                    if (promedioMateria < min) min = promedioMateria;
+                }
+
+                sumaNotas += promedioMateria;
+                aprobadasContador++;
+            }
+        }
+
+        if (aprobadasContador == 0) {
+            return new double[]{0.0, 0.0, 0.0};
+        }
+
+        return new double[]{max, min, (sumaNotas / aprobadasContador)};
+    }
+    
+    public ArrayList<InscripcionMateria> obtenerRankingMaterias() {
+        ArrayList<InscripcionMateria> ranking = new ArrayList<>(inscripciones);
+        
+        int n = ranking.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (ranking.get(i).getPuntajeRanking() < ranking.get(j).getPuntajeRanking()) {
+                    InscripcionMateria aux = ranking.get(i);
+                    ranking.set(i, ranking.get(j));
+                    ranking.set(j, aux);
+                }
+            }
+        }
+        return ranking;
+    }
 }

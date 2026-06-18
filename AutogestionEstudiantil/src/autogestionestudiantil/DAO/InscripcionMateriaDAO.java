@@ -96,4 +96,54 @@ public class InscripcionMateriaDAO {
                     + e.getMessage());
         }
     }
+    
+    //Para abrir y cargarlo archivo
+    //Promt: como hago para cargar y abrir el archivo
+    
+    public ArrayList<InscripcionMateria> cargarInscripcionesDesdeRuta(ArrayList<Materia> materias, String ruta) {
+    ArrayList<InscripcionMateria> listaCargada = new ArrayList<>();
+    
+    // Usamos un bloque try-with-resources para que Java cierre el archivo automáticamente pase lo que pase
+    try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader(ruta))) {
+        String linea;
+        
+        while ((linea = br.readLine()) != null) {
+            if (linea.trim().isEmpty()) {
+                continue; // Saltamos líneas vacías por seguridad
+            }
+            
+            // 1. Desarmamos la línea (Estructura: codigo;totalClases;clasesAsistidas;notas1,2,3...)
+            String[] datos = linea.split(";");
+            String codigoMateria = datos[0];
+            
+            // 2. Buscamos a qué materia real corresponde ese código
+            Materia materiaEncontrada = null;
+            for (Materia m : materias) {
+                if (m != null && m.getCodigo().equalsIgnoreCase(codigoMateria)) {
+                    materiaEncontrada = m;
+                    break;
+                }
+            }
+            
+            // 3. Si la materia existe en el plan de estudio, reconstruimos su inscripción
+            if (materiaEncontrada != null) {
+                InscripcionMateria inscripcion = new InscripcionMateria(materiaEncontrada);
+                
+                // Mapeamos los datos numéricos de asistencias
+                // Usamos los mismos atributos que ya tenés asignados en tu método fromTexto
+                inscripcion.registrarClase(false); // Truco por si necesitas inicializar, pero tu fromTexto original asigna directo:
+                
+                // Como ya tenías resuelto el parseo en tu clase, replicamos tu estructura original de lectura:
+                inscripcion = InscripcionMateria.fromTexto(linea, materiaEncontrada);
+                
+                listaCargada.add(inscripcion);
+            }
+        }
+        
+    } catch (java.io.IOException e) {
+        System.err.println("Error crítico al leer el archivo en la ruta especificada: " + e.getMessage());
+    }
+    
+    return listaCargada;
+}
 }
