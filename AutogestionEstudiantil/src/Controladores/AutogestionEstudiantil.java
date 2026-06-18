@@ -334,6 +334,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         setName("Main"); // NOI18N
         setPreferredSize(new java.awt.Dimension(850, 600));
         setResizable(false);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         PanelNavegacion.setBackground(new java.awt.Color(10, 20, 80));
         PanelNavegacion.setName("PanelNavegacion"); // NOI18N
@@ -1754,7 +1755,7 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setPreferredSize(new java.awt.Dimension(300, 60));
-        jPanel16.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
+        jPanel16.setLayout(new java.awt.FlowLayout(3));
 
         btnInscribirse.setBackground(new java.awt.Color(10, 20, 80));
         btnInscribirse.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -3309,14 +3310,13 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
         int instancia = cmbNumNota.getSelectedIndex();
         double notaCargada = Double.parseDouble(spnCalificaciones.getValue().toString());
 
-        // El controlador chequea pasivamente el estado del objeto en memoria
-        double notaExistente = controladorInscripciones.verifyNotaExistente(filaSeleccionada, instancia);
+        // El controlador nos da el String ya cocinado o null si está libre
+        String notaExistenteFormateada = controladorInscripciones.obtenerNotaExistenteFormateada(filaSeleccionada, instancia);
 
-        if (notaExistente != -1.0 && notaExistente != -2.0) {
-            String notaFormateada = (notaExistente % 1 == 0) ? String.format("%.0f", notaExistente) : String.valueOf(notaExistente);
+        if (notaExistenteFormateada != null) {
             int respuesta = JOptionPane.showConfirmDialog(
                     this,
-                    "Ya tenés la nota " + notaFormateada + " cargada en esta instancia.\n¿Deseas editarla por un " + notaCargada + "?",
+                    "Ya tenés la nota " + notaExistenteFormateada + " cargada en esta instancia.\n¿Deseas editarla por un " + notaCargada + "?",
                     "Confirmar Edición",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE
@@ -3326,6 +3326,12 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
                 return;
             }
         }
+
+        // Si está libre o confirmó la edición, guardamos
+        controladorInscripciones.guardarCalificacionConfirmada(filaSeleccionada, instancia, notaCargada);
+        JOptionPane.showMessageDialog(this, "Calificación guardada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        lblMensajeNota.setText("Calificación registrada.");
+        btnRegistrarNotaActionPerformed(null);
 
         // Si pasa el filtro, la vista le da la orden de guardar definitivamente
         controladorInscripciones.guardarCalificacionConfirmada(filaSeleccionada, instancia, notaCargada);
@@ -3787,7 +3793,6 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
@@ -3819,7 +3824,6 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
@@ -3872,7 +3876,6 @@ public class AutogestionEstudiantil extends javax.swing.JFrame {
     private javax.swing.JLabel lblMostrarPromedio;
     private javax.swing.JLabel lblMostrarPromedioGralActual1;
     private javax.swing.JLabel lblMostrarPromedioGralActual2;
-    private javax.swing.JLabel lblMostrarTotalInscriptas1;
     private javax.swing.JLabel lblMostrarTotalInscriptas2;
     private javax.swing.JLabel lblMostrarTotalInscriptas3;
     private javax.swing.JLabel lblMostrarasistenciaCritica;

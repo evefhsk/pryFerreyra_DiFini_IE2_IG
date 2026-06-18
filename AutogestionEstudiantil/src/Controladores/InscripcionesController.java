@@ -232,8 +232,7 @@ public class InscripcionesController {
         };
     }
 
-    // 🏆 CORRECCIÓN MVC: Eliminamos el JOptionPane de acá adentro.
-    // Pasamos el chequeo de la nota existente, pero la confirmación pasa a la vista.
+    
     public double verificarNotaExistente(int filaSeleccionada, int instancia) {
         if (filaSeleccionada < 0 || filaSeleccionada >= inscripciones.size()) {
             return -2.0;
@@ -268,6 +267,26 @@ public class InscripcionesController {
         return new double[]{inscripciones.size(), promGral, asisMedia};
     }
 
+    public String obtenerNotaExistenteFormateada(int filaSeleccionada, int instancia) {
+        if (filaSeleccionada < 0 || filaSeleccionada >= inscripciones.size()) {
+            return null;
+        }
+
+        double notaExistente = inscripciones.get(filaSeleccionada).getNotas().get(instancia);
+
+        // Si no hay nota cargada (-1.0), para el controlador no existe nota previa
+        if (notaExistente == -1.0) {
+            return null;
+        }
+
+        // El controlador hace el formateo acá adentro
+        if (notaExistente % 1 == 0) {
+            return String.format("%.0f", notaExistente);
+        } else {
+            return String.valueOf(notaExistente);
+        }
+    }
+    
     public ArrayList<String> obtenerListaRiesgoFormateada() {
         ArrayList<String> lineas = new ArrayList<>();
         ArrayList<InscripcionMateria> riesgo = obtenerMateriasEnRiesgoOrdenadas();
