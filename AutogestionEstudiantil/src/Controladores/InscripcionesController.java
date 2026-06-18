@@ -210,6 +210,61 @@ public class InscripcionesController {
         return "OK";
     }
     
+    // 1. Método para calcular los promedios globales y asistencia media generales
+public double[] calcularEstadisticasGenerales() {
+    if (inscripciones.isEmpty()) {
+        return new double[]{0.0, 0.0, 0.0}; // Total, Promedio, Asistencia
+    }
+    
+    double sumaPromedios = 0;
+    double sumaAsistencias = 0;
+    
+    for (InscripcionMateria ins : inscripciones) {
+        if (ins != null && ins.getMateria() != null) {
+            sumaPromedios += ins.getPromedio();
+            sumaAsistencias += ins.getPorcentajeAsistencia();
+        }
+    }
+    
+    double promGral = sumaPromedios / inscripciones.size();
+    double asisMedia = sumaAsistencias / inscripciones.size();
+    
+    return new double[]{inscripciones.size(), promGral, asisMedia};
+}
+
+// 2. Método para formatear el listado de materias en riesgo para el JList
+    public ArrayList<String > obtenerListaRiesgoFormateada() {
+        ArrayList<String> lineas = new ArrayList<>();
+        ArrayList<InscripcionMateria> riesgo = obtenerMateriasEnRiesgoOrdenadas(); // Tu algoritmo de burbuja
+
+        for (InscripcionMateria ins : riesgo) {
+            if (ins != null && ins.getMateria() != null) {
+                lineas.add(ins.getMateria().getNombre() + " (" + String.format("%.1f", ins.getPorcentajeAsistencia()) + "% Asis.)");
+            }
+        }
+        if (lineas.isEmpty()) {
+            lineas.add("Súper al día! Sin materias en riesgo.");
+        }
+        return lineas;
+    }
+
+    // 3. Método para filtrar y formatear las materias aprobadas para el JList
+    public ArrayList<String> obtenerListaAprobadasFormateada() {
+        ArrayList<String> lineas = new ArrayList<>();
+        for (InscripcionMateria ins : inscripciones) {
+            if (ins != null && ins.getMateria() != null) {
+                // La regla de negocio de aprobación se evalúa acá adentro
+                if (ins.getPromedio() >= 4.0 && ins.getPorcentajeAsistencia() >= 75.0) {
+                    lineas.add(ins.getMateria().getNombre() + " [Nota: " + String.format("%.1f", ins.getPromedio()) + "]");
+                }
+            }
+        }
+        if (lineas.isEmpty()) {
+            lineas.add("Aún no registrás materias aprobadas.");
+        }
+        return lineas;
+    }
+    
     //BONUS 
     
     public int buscarIndiceFilaMateria(String criterio) {
@@ -304,4 +359,6 @@ public class InscripcionesController {
         }
         return ranking;
     }
+    
+    
 }
